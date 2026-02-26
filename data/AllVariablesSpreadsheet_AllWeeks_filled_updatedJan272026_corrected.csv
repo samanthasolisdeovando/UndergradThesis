@@ -1,0 +1,316 @@
+﻿Remark,Week dates,measurement week,Treatment,Season,CO2flux,CH4flux,mgCH4,averageTemp,MeanSoilMoisture,MEANpH,meanGCC,canopyheight,CanopyExtentEstimate,EvapotranspirationRate,bursts
+1,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.45,0.307899513667566,,0.69,1.4,0
+2,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.8,0.306620129623917,,0.58,1.6,0
+3,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.4,0.306178681353166,,0.52,1.6,0
+4,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.4,0.30585291571202,,0.02,1,0
+5,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.5,0.304458564708052,,0.05,1.4,0
+6,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.65,0.307028731871044,,0.09,1.6,1
+7,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.4,0.308340724779017,,0.10,1.4,0
+8,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.4,0.307968806391243,,0.36,1.6,3
+9,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.65,0.305527147289038,,0.33,1.6,0
+10,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.7,0.30456690098623,,0.41,1.8,1
+11,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.4,0.303383716363582,,0.43,1.4,0
+12,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.4,0.306080114693164,,0.60,1.8,0
+13,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.35,0.304781094003315,,0.53,1.6,0
+14,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.45,0.305873135414285,,0.58,1.6,0
+15,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.2,0.304992247944285,,0.62,1.6,1
+16,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.6,0.304235774426664,,0.61,1.6,0
+17,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.55,0.305253040240017,,0.60,1.8,0
+18,May 13 2025 - May 21 2025,1,Extended,Early summer,NA,NA,NA,10,NA,7.3,0.303899347187243,,0.06,1.6,0
+19,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.7,0.305685198494239,,0.07,1.6,0
+20,May 13 2025 - May 21 2025,1,Control,Early summer,NA,NA,NA,10,NA,7.5,0.306659171957336,,0.11,1.8,0
+21,May 13 2025 - May 21 2025,1,Heatwave,Early summer,NA,NA,NA,10,NA,7.5,0.306676641189713,,0.12,1.4,0
+1,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.55,0.312768574486555,,0.33,1.4,1
+2,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.4,0.313889012246267,,0.41,1.4,0
+3,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.75,0.314025335249453,,0.47,1.4,6
+4,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.4,0.309100467101313,,0.46,1.2,9
+5,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.4,0.309872220635805,,0.51,1.2,9
+6,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.5,0.312113147062149,,0.56,1.4,10
+7,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.25,0.313810699163289,,0.52,1.4,0
+8,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.4,0.314486942863613,,0.63,1.4,2
+9,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.45,0.311103419074778,,0.53,1.4,0
+10,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.5,0.309940537534392,,0.52,1.4,8
+11,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.5,0.307990121497326,,0.00,1.4,2
+12,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.65,0.312774097243034,,0.11,1.4,25
+13,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.8,0.312323932401802,,0.06,1.4,4
+14,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.2,0.312437485918829,,0.12,1.4,0
+15,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.55,0.31185965802792,,0.28,1.2,6
+16,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.55,0.306665181987738,,0.36,1.4,2
+17,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.45,0.307698831253807,,0.50,1.4,9
+18,May 21 2025 - May 28 2025,2,Extended,Early summer,NA,NA,NA,10,NA,7.7,0.310330057081517,,0.58,1.4,9
+19,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.5,0.309934078561863,,0.65,1.2,5
+20,May 21 2025 - May 28 2025,2,Control,Early summer,NA,NA,NA,10,NA,7.35,0.314854782707377,,0.78,1.4,6
+21,May 21 2025 - May 28 2025,2,Heatwave,Early summer,NA,NA,NA,10,NA,7.5,0.312587113193177,,0.76,1.1,5
+1,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.3,0.320288652271043,10.3,0.91,1.8,0
+2,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.6,0.31545601587102,19.4,0.78,1.6,0
+3,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.8,0.315539664258321,8.6,0.76,1.6,0
+4,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.6,0.316207984305755,16.8,0.65,1.4,2
+5,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.6,0.312188498004669,4.2,0.70,1.6,2
+6,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.5,0.316574327932068,6.1,0.62,1.4,0
+7,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.45,0.316940018576249,21.2,0.02,1.6,0
+8,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.35,0.318458284357983,22.5,0.12,1.6,0
+9,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.65,0.312749023779564,5.7,0.11,1.6,0
+10,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.8,0.315496421942353,4.5,0.24,1.6,2
+11,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.55,0.308256674978389,16.1,0.25,,5
+12,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.7,0.322669152364883,10.6,0.43,1.6,1
+13,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.6,0.314540913638493,14.8,0.60,1.6,0
+14,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.35,0.316936717940575,20.6,0.69,1.6,1
+15,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.75,0.318209297798952,19.3,0.80,1.6,4
+16,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.75,0.309197461866378,18.1,0.78,1.6,1
+17,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.65,0.312961796003085,9.6,0.89,1.4,1
+18,May 28 - June 4,3,Extended,Mid-summer,NA,NA,NA,10,NA,7.65,0.31275363590899,15.7,0.82,1.6,0
+19,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.5,0.311183316466437,9.2,0.92,1.6,0
+20,May 28 - June 4,3,Control,Mid-summer,NA,NA,NA,10,NA,7.35,0.317510809668437,10.1,0.99,1.8,0
+21,May 28 - June 4,3,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.75,0.315498258926045,13.6,0.99,1.4,1
+1,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7.05,0.326933146469896,18.6,1.15,1.6,4
+2,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.2,0.318490239607071,20.6,1.03,1.4,2
+3,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.2,0.315740039274037,10.1,0.10,1.4,2
+4,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7,0.322358611453031,21.8,0.03,1.6,2
+5,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7.25,0.316741867527811,13.7,0.07,1.8,3
+6,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7.3,0.319450802090947,11.8,0.18,1.4,1
+7,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7.05,0.323338785392573,42.4,0.20,1.6,0
+8,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7,0.322683911416921,29.7,0.47,1.8,3
+9,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7.25,0.315431655982063,6.2,0.49,1.6,
+10,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7.4,0.316267605935581,9.1,0.71,1.6,1
+11,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.4,0.313169995317865,25.6,0.77,1.4,0
+12,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.3,0.329524997241702,14.4,0.96,1.4,4
+13,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.1,0.318406642753774,19.7,0.97,1.6,1
+14,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7,0.325754684845652,22.6,0.96,1.4,4
+15,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,6.9,0.326824716925918,35.2,0.98,1.6,4
+16,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7,0.308704650475637,24.6,0.99,1.5,5
+17,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7,0.31367215260745,16.3,0.99,1.6,5
+18,June 4 - June 11,4,Extended,Mid-summer,NA,NA,NA,10,NA,7,0.317374172296629,23.6,0.97,1.4,2
+19,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7.25,0.312935946196629,43.8,0.90,1.6,0
+20,June 4 - June 11,4,Control,Mid-summer,NA,NA,NA,10,NA,7.1,0.321142604508384,18.4,0.12,1.4,5
+21,June 4 - June 11,4,Heatwave,Mid-summer,NA,NA,NA,10,NA,7,0.320728128574819,19,0.05,1.6,1
+1,June 11 - June 18,5,Extended,Late summer,NA,NA,NA,10,NA,7.3,0.331982877154858,19,0.14,1.2,3
+2,June 11 - June 18,5,Heatwave,Late summer,0.98238772,-1.32E-07,-1.83E-04,16,7.4,7.15,0.319340024557948,19.4,0.15,1.2,3
+3,June 11 - June 18,5,Heatwave,Late summer,0.693681922,-1.96E-07,-2.71E-04,16,8.9,7.1,0.318039880420759,11,0.23,1.6,3
+4,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7,0.328690207766992,24,0.27,1.4,4
+5,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7.15,0.321237073001326,15.6,0.35,1.2,1
+6,June 11 - June 18,5,Extended,Late summer,0.131653451,-4.66E-07,-6.46E-04,10,8.75,7.3,0.32276511899884,12.8,0.49,1.6,3
+7,June 11 - June 18,5,Extended,Late summer,1.430385445,-1.3E-07,-1.81E-04,10,7.7,7.1,0.326311135491274,NA,0.54,1.6,1
+8,June 11 - June 18,5,Extended,Late summer,NA,NA,NA,10,NA,7.05,0.327453280563108,46.7,0.69,1.6,2
+9,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7.05,0.3172494715454,7.2,0.70,1.6,3
+10,June 11 - June 18,5,Extended,Late summer,NA,NA,NA,10,NA,7.1,0.318261978462722,13,0.77,1.6,3
+11,June 11 - June 18,5,Heatwave,Late summer,0.463241593,-3.19E-07,-4.42E-04,16,9.95,7.05,0.31543196116746,33.8,0.71,1.4,2
+12,June 11 - June 18,5,Heatwave,Late summer,0.876998957,-3.14E-07,-4.35E-04,16,10,7.25,0.333804450334967,21.2,0.67,1.8,2
+13,June 11 - June 18,5,Heatwave,Late summer,1.798470178,-1.18E-07,-1.64E-04,16,8.4,7.3,0.319902280695271,24.9,0.04,1.4,1
+14,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7.15,0.329836094883117,40.1,0.05,1.6,4
+15,June 11 - June 18,5,Control,Late summer,1.450364585,-8.73E-08,-1.21E-04,10,7.2,7.05,0.331774769243254,41.3,0.07,1.6,3
+16,June 11 - June 18,5,Extended,Late summer,NA,NA,NA,10,NA,7.05,0.312078135852746,24.2,0.13,1.4,3
+17,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7.05,0.316412603894114,16.2,0.29,1.4,3
+18,June 11 - June 18,5,Extended,Late summer,NA,NA,NA,10,NA,7.05,0.320270577938786,22.3,0.39,1.6,3
+19,June 11 - June 18,5,Heatwave,Late summer,1.034548516,-7.43E-08,-1.03E-04,16,8.35,7.1,0.316314855966857,46.6,0.44,1.4,2
+20,June 11 - June 18,5,Control,Late summer,NA,NA,NA,10,NA,7.15,0.323433698143461,21.2,0.53,1.4,1
+21,June 11 - June 18,5,Heatwave,Late summer,1.373873228,-3.16E-08,-4.38E-05,16,8.7,6.95,0.324364773035844,24.7,0.43,1.8,2
+1,June 18 - June 25,6,Extended,Late summer / heatwave,2.338807989,8.51E-09,1.18E-05,10,9.55,6.65,0.336344051731263,19.1,0.53,1.6,4
+2,June 18 - June 25,6,Heatwave,Late summer / heatwave,2.559001063,9.35E-09,1.3E-05,16,9.15,7.15,0.328064748947924,23.6,0.50,1.4,4
+3,June 18 - June 25,6,Heatwave,Late summer / heatwave,2.002776328,-1.75E-08,-2.43E-05,16,9.15,6.95,0.323033142033495,15.8,0.60,1.2,1
+4,June 18 - June 25,6,Control,Late summer / heatwave,2.090546206,-1.67E-08,-2.31E-05,10,9.1,7,0.332499697194711,24.8,0.58,1.8,2
+5,June 18 - June 25,6,Control,Late summer / heatwave,1.514392908,-2.52E-08,-3.49E-05,10,9.3,6.9,0.320675949146469,16.3,0.67,1.6,1
+6,June 18 - June 25,6,Extended,Late summer / heatwave,1.730960434,-6.62E-08,-9.17E-05,10,9.6,6.95,0.323781591725473,14.8,0.78,1.6,4
+7,June 18 - June 25,6,Extended,Late summer / heatwave,3.361655897,-4.01E-08,-5.56E-05,10,8.25,6.9,0.33151203130001,46.4,0.77,1.8,0
+8,June 18 - June 25,6,Extended,Late summer / heatwave,1.413891423,-1.75E-09,-2.43E-06,10,8.25,7,0.328703917078614,39.7,0.78,1.6,3
+9,June 18 - June 25,6,Control,Late summer / heatwave,1.413053126,4.77E-08,6.61E-05,10,9.3,7.2,0.319605793682066,10.5,0.01,1.6,2
+10,June 18 - June 25,6,Extended,Late summer / heatwave,1.239449714,1.58E-08,2.19E-05,10,8.45,7.05,0.31874680711622,13.1,0.07,1.8,8
+11,June 18 - June 25,6,Heatwave,Late summer / heatwave,5.675480297,-5.11E-08,-7.08E-05,16,9.95,7.05,0.322948197209595,37.1,0.02,1.6,3
+12,June 18 - June 25,6,Heatwave,Late summer / heatwave,3.825439326,-5.11E-08,-7.08E-05,16,9.7,6.95,0.34604696363051,23.7,0.06,1.4,1
+13,June 18 - June 25,6,Heatwave,Late summer / heatwave,2.195310645,-1.6E-08,-2.22E-05,16,9.5,7,0.33100336145188,28.9,0.14,1.6,2
+14,June 18 - June 25,6,Control,Late summer / heatwave,2.49093693,1.97E-08,2.73E-05,10,8.7,6.95,0.332949492613462,40.2,0.27,1.6,0
+15,June 18 - June 25,6,Control,Late summer / heatwave,1.762460075,1.09E-08,1.51E-05,10,8.2,7.15,0.336048259278474,46.6,0.37,1.8,2
+16,June 18 - June 25,6,Extended,Late summer / heatwave,1.465884525,-8.54E-09,-1.18E-05,10,9.85,7,0.312165450722564,25.9,0.42,1.6,3
+17,June 18 - June 25,6,Control,Late summer / heatwave,1.359860406,4.58E-08,6.35E-05,10,10.2,6.85,0.31920736076748,18.1,0.55,1.6,1
+18,June 18 - June 25,6,Extended,Late summer / heatwave,1.448485433,1.71E-08,2.37E-05,10,8.95,6.95,0.322046879845418,23.1,0.59,1.4,1
+19,June 18 - June 25,6,Heatwave,Late summer / heatwave,2.125364002,-4.76E-08,-6.59E-05,16,10.2,6.95,0.32316120081087,56,0.68,1.4,2
+20,June 18 - June 25,6,Control,Late summer / heatwave,1.366173288,1.55E-08,2.15E-05,10,10.1,7.85,0.324081408192587,21.9,0.39,1.6,2
+21,June 18 - June 25,6,Heatwave,Late summer / heatwave,3.772613657,-1.89E-08,-2.62E-05,16,8.2,6.95,0.334714686346021,28.2,0.68,1.6,2
+1,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.05,0.340186078339841,18.6,0.73,1.4,0
+2,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.3,0.339788832316923,26.1,0.04,0.8,3
+3,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.2,0.328654967350983,17.5,0.08,0.4,3
+4,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7,0.336348406903807,25.4,0.32,1,1
+5,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.05,0.323854083896264,18.5,0.15,0.8,2
+6,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.05,0.32620384148761,15.4,0.34,1.4,20
+7,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,6.9,0.334023546005198,53,0.38,1.8,0
+8,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.2,0.331920765046365,40.3,0.47,1.6,0
+9,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.25,0.323335593721038,11.2,0.54,0.8,1
+10,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.5,0.322312083174723,16,0.78,1.6,6
+11,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.1,0.329309175038803,39.1,0.79,0.8,0
+12,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,6.95,0.355529081521302,22.4,0.80,1,4
+13,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,6.9,0.338623863284411,29.2,0.86,0.8,0
+14,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.05,0.337490238529881,40.4,0.85,1,11
+15,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.15,0.340320111376419,47,0.20,1,1
+16,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.45,0.316008920482589,27.5,0.03,1.8,0
+17,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,6.8,0.323236750266706,17.7,0.04,1,0
+18,June 25 - July 2,7,Extended,Autumn / extended summer,NA,NA,NA,10,NA,6.95,0.326915986509628,24.9,0.06,1.4,0
+19,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,6.8,0.327201663176263,57.8,0.12,1,0
+20,June 25 - July 2,7,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.05,0.327127018981904,22.2,0.25,1,1
+21,June 25 - July 2,7,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.3,0.339524411643499,29.3,0.34,1,0
+1,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.15,0.347070773366104,19.1,0.44,1.4,9
+2,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,6.85,0.337584114711699,26.3,0.52,1.4,21
+3,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,6.95,0.337584114711699,19.1,0.77,1.6,14
+4,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,6.95,0.340751918826015,25.1,0.77,2,14
+5,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,6.95,0.322795861165113,18.9,0.78,1.4,0
+6,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.2,0.333161899949837,16.2,0.82,1,25
+7,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,6.85,0.338005097882103,53.2,0.79,2,1
+8,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.2,0.344953763997527,41.1,0.77,1.6,2
+9,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.35,0.323080556275679,11.3,0.01,1.6,19
+10,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7,0.330183525765705,26,0.03,1.8,17
+11,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.15,0.329173840808674,39.4,0.06,1.6,2
+12,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.25,0.357341018920804,24.3,0.19,1.4,6
+13,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.05,0.341277883938882,32.6,0.28,1.4,5
+14,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7,0.34463653293832,41.3,0.40,1.8,12
+15,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.1,0.347120920269968,47,0.51,1.8,7
+16,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,7.6,0.315210255840404,32.9,0.57,1.6,4
+17,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.05,0.325443878852821,19.2,0.62,1.4,4
+18,July 2 - July 10,8,Extended,Autumn / extended summer,NA,NA,NA,10,NA,6.75,0.336507369182308,26.3,0.64,1.6,1
+19,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.15,0.32348139185389,58.2,0.63,1.8,1
+20,July 2 - July 10,8,Control,Autumn / extended summer,NA,NA,NA,6.625,NA,7.15,0.328882673212356,22.3,0.59,1.6,3
+21,July 2 - July 10,8,Heatwave,Autumn / extended summer,NA,NA,NA,6.625,NA,7.1,0.340517571104554,30.3,0.48,1.8,7
+1,July 10 - July 16,9,Extended,Autumn / extended summer,2.434588052,-1.57E-08,-2.17E-05,10,9.8,6.95,0.35925877275426,18.6,0.49,1.4,30
+2,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.439294465,-4.3E-08,-5.96E-05,4.75,9.5,6.8,0.341874223594857,27.2,0.03,1,28
+3,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.186136239,-1.08E-07,-1.49E-04,4.75,9.7,7.2,0.325943239669688,19.2,0.06,1,19
+4,July 10 - July 16,9,Control,Autumn / extended summer,1.655950391,-3.36E-08,-4.65E-05,4.75,8.2,7,0.34269716584372,25.1,0.10,1,1
+5,July 10 - July 16,9,Control,Autumn / extended summer,1.114268832,-4.61E-08,-6.39E-05,4.75,9.95,6.95,0.32379069770657,18.6,0.21,0.8,0
+6,July 10 - July 16,9,Extended,Autumn / extended summer,2.30280469,1.6E-08,2.22E-05,10,9.55,7.05,0.338585893185795,15.9,0.32,1.2,30
+7,July 10 - July 16,9,Extended,Autumn / extended summer,3.663465737,3.87E-08,5.37E-05,10,7.6,7.1,0.34613281295617,52.3,0.41,1.4,2
+8,July 10 - July 16,9,Extended,Autumn / extended summer,2.516545038,-1.82E-08,-2.52E-05,10,8.15,6.9,0.352657121374887,41.1,0.57,1.4,0
+9,July 10 - July 16,9,Control,Autumn / extended summer,1.226803153,-5.52E-08,-7.65E-05,4.75,9,7.25,0.352657121374887,11.8,0.67,0.8,18
+10,July 10 - July 16,9,Extended,Autumn / extended summer,1.906209555,-4.54E-08,-6.29E-05,10,8.15,7.65,0.332302981336445,27.7,0.71,1.4,
+11,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.93737434,-4.41E-08,-6.12E-05,4.75,9.45,7.05,0.332532894621795,41.8,0.67,1,3
+12,July 10 - July 16,9,Heatwave,Autumn / extended summer,2.036064742,-4.77E-08,-6.61E-05,4.75,9.55,7.2,0.361476528136246,24.6,0.64,0.8,4
+13,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.893850637,-4.33E-08,-6E-05,4.75,7.6,7.3,0.341087795637935,32.3,0.59,0.8,5
+14,July 10 - July 16,9,Control,Autumn / extended summer,2.040642976,-5.11E-08,-7.08E-05,4.75,8.5,7.05,0.34415592047711,41.4,0.57,1.2,16
+15,July 10 - July 16,9,Control,Autumn / extended summer,1.168546879,-6.16E-08,-8.53E-05,4.75,8.2,7.15,0.349623535320093,47.1,0.57,1,2
+16,July 10 - July 16,9,Extended,Autumn / extended summer,1.245756101,9.42E-09,1.3E-05,10,9.45,7.1,0.32159061541406,36.4,0.03,1.2,6
+17,July 10 - July 16,9,Control,Autumn / extended summer,1.395396024,-7.18E-08,-9.95E-05,4.75,9.95,6.95,0.328371370485918,19.7,0.02,1,10
+18,July 10 - July 16,9,Extended,Autumn / extended summer,2.204635221,2.7E-09,3.75E-06,10,8.85,6.95,0.353258771775448,27.8,0.02,1.6,2
+19,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.216622242,-6.39E-08,-8.86E-05,4.75,9.45,7.05,0.323340178202652,57.1,0.05,0.8,1
+20,July 10 - July 16,9,Control,Autumn / extended summer,1.749515684,-3.65E-08,-5.06E-05,4.75,9.1,6.95,0.331127873346444,21.8,0.10,1.2,1
+21,July 10 - July 16,9,Heatwave,Autumn / extended summer,1.607966569,-3.86E-08,-5.35E-05,4.75,8.6,7.1,0.342184634025735,30.9,0.10,1,3
+1,July 16 -  July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.7,0.359186527234662,18.4,0.16,0.6,5
+2,July 16 - July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.5,0.335402524674447,26.2,0.22,1,2
+3,July 16 - July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,7,0.319896876158628,18.6,0.27,1,1
+4,July 16 -  July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,,0.338965089347648,25.1,0.28,1,1
+5,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.75,0.320056534030509,19.1,0.31,1,0
+6,July 16 - July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.6,0.337549917709079,15.9,0.33,0.6,21
+7,July 16 -  July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.85,0.342887292228797,49.7,0.42,1.6,0
+8,July 16 - July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.8,0.356455219966385,40.9,0.52,0.6,0
+9,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.9,0.322501924526553,11.6,0.57,1,0
+10,July 16 -  July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.65,0.333989680961035,30.7,0.57,1.6,11
+11,July 16 - July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.95,0.329617522386616,39.5,0.56,1,0
+12,July 16 - July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.55,0.356327352954582,23.7,0.02,0.8,2
+13,July 16 -  July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.8,0.340038568666636,32.5,0.02,1,0
+14,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.95,0.342454871350579,40.7,0.02,1.2,0
+15,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.9,0.346492895656141,47,0.07,1,1
+16,July 16 -  July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.45,0.322451895575351,36.2,0.14,1.4,1
+17,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.85,0.325864088296794,19.2,0.21,1,1
+18,July 16 - July 23,10,Extended,Regular late autumn / warmer early autumn,NA,NA,NA,10,NA,6.6,0.363124300452041,28.9,0.25,1.6,1
+19,July 16 -  July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.9,0.318031920122305,57.3,0.32,1.2,1
+20,July 16 - July 23,10,Control,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,6.95,0.329241987839242,21.9,0.42,1.2,1
+21,July 16 - July 23,10,Heatwave,Regular late autumn / warmer early autumn,NA,NA,NA,2.5,NA,7.15,0.341905419737581,30.7,0.44,1,0
+1,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,1.281279722,-6.95E-09,-9.63E-06,10,10,6.8,0.364941042569707,18.1,0.48,0.6,2
+2,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,0.927285025,-7.14E-09,-9.9E-06,0.5,9.9,7,0.333212509983273,25.7,0.47,1,1
+3,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,0.896214491,-2.51E-08,-3.48E-05,0.5,9.5,7,0.318811486925093,18.6,0.49,1,1
+4,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,1.440285163,1.85E-10,2.57E-07,0.5,8.9,7.1,0.33446180506963,24.7,0.44,1,2
+5,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,0.849082034,9.15E-09,1.27E-05,0.5,9.65,7.15,0.318578291711567,18.7,0.03,1,0
+6,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,1.60467809,-2.2E-09,-3.05E-06,10,10,6.55,0.344182221801003,15.7,0.03,0.6,3
+7,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,3.242930768,-8.28E-09,-1.15E-05,10,9.45,7.05,0.345773087464047,48.6,0.05,1.6,1
+8,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,1.682318783,-3.25E-08,-4.5E-05,10,10,6.5,0.364375017361043,29.1,0.13,0.6,2
+9,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,0.996856085,1.64E-08,2.27E-05,0.5,9.45,7.05,0.323664046121302,11.4,0.24,1,0
+10,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,1.511597975,1.95E-09,2.71E-06,10,9,6.9,0.337685564216081,30.2,0.39,1.6,0
+11,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,1.815255427,-8.64E-09,-1.2E-05,0.5,9.45,6.9,0.32782808693995,39.9,0.48,1,2
+12,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,1.728260762,-7.6E-09,-1.05E-05,0.5,9.85,6.95,0.352120253731667,20.7,0.64,0.8,4
+13,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,1.162083188,-1.44E-08,-2E-05,0.5,8.95,6.9,0.335562863786611,32.9,0.68,1,1
+14,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,2.112502056,-1.19E-08,-1.65E-05,0.5,9.5,6.9,0.341816432295257,39.3,0.92,1.2,0
+15,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,1.313734042,1E-08,1.39E-05,0.5,9.25,6.8,0.343067421973148,46.4,0.97,1,1
+16,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,2.094848257,-6.27E-08,-8.69E-05,10,10,6.85,0.328390152634974,35.7,0.90,1.4,1
+17,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,0.904182545,-1.83E-08,-2.53E-05,0.5,9.6,7,0.325215151902106,19.4,0.90,1,0
+18,July 23 - July 30,11,Extended,Regular late autumn / warmer early autumn,3.009630826,5.28E-10,7.32E-07,10,9.65,6.8,0.376438375782515,30.9,0.96,1.6,2
+19,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,1.216655323,4.7E-08,6.51E-05,0.5,9.3,7.05,0.319049267160662,58.6,1.04,1.2,0
+20,July 23 - July 30,11,Control,Regular late autumn / warmer early autumn,NA,NA,NA,0.5,NA,7.05,0.327343937856806,21.7,1.03,1.2,1
+21,July 23 - July 30,11,Heatwave,Regular late autumn / warmer early autumn,1.46181695,2.24E-08,3.1E-05,0.5,8.8,7.2,0.340344065108302,31.2,0.01,1,0
+1,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,6.95,0.366340789176175,18.5,0.04,1.2,10
+2,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.45,0.331862986330679,,0.06,14.4,3
+3,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.45,0.315123476017843,,0.11,14.8,1
+4,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,6.95,0.325066516438183,,0.14,14.6,2
+5,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.1,0.316305916427606,,0.23,15.2,1
+6,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,6.9,0.342055030887003,16.7,0.27,1,10
+7,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,7.45,0.346340536991999,49.6,0.38,1.4,3
+8,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,7,0.368294171424839,29.2,0.54,1.2,7
+9,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.2,0.319597230247267,,0.63,13.6,3
+10,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,7.1,0.34554065079019,31.1,0.63,1,4
+11,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.5,0.324639236235669,,0.65,14.2,3
+12,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.45,0.345115926813951,,0.66,15.2,2
+13,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.15,0.328403781637822,,0.69,14.4,2
+14,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.5,0.337037178019418,,0.74,14,4
+15,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.3,0.332860116377937,,0.02,13,11
+16,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,7.1,0.336482462216537,37.2,0.03,1.2,4
+17,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.5,0.323221370096184,,0.11,13,6
+18,July 30 - August 6,12,Extended,Regular late autumn (extended group only),NA,NA,NA,10,NA,7.15,0.38431981790366,34.6,0.19,1.4,3
+19,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.25,0.3168058138587,,0.32,13.4,2
+20,July 30 - August 6,12,Control,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.35,0.322892534057377,,0.42,13.2,1
+21,July 30 - August 6,12,Heatwave,Regular late autumn (extended group only),NA,NA,NA,-1.5,NA,7.35,0.337642868422008,,0.01,13.6,5
+1,August 6 - August 13,13,Extended,Regular late autumn (extended group only),2.219362821,-5.72E-08,-7.93E-05,2.5,9.15,7.25,0.36477806481423,17.4,0.67,1,8
+2,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.70,,
+3,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.72,,
+4,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.80,,
+5,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.74,,
+6,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.090188356,-1.11E-08,-1.54E-05,2.5,9.9,7.1,0.337443025022269,16.4,0.74,1.4,2
+7,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.948602917,4.97E-09,6.89E-06,2.5,5.4,7.45,0.343846052434135,36.9,0.68,1.2,4
+8,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.599779465,-3.86E-08,-5.35E-05,2.5,9,7.25,0.370019893860017,27.7,0.03,1.2,1
+9,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.02,,
+10,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.600802025,-2.67E-08,-3.7E-05,2.5,7.5,7.4,0.348646540541114,31.1,0.03,0.8,10
+11,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.11,,
+12,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.23,,
+13,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.38,,
+14,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.46,,
+15,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.69,,
+16,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.935896413,-6.55E-09,-9.08E-06,2.5,8.6,7.25,0.34333018379065,37.6,0.77,1,3
+17,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.80,,
+18,August 6 - August 13,13,Extended,Regular late autumn (extended group only),1.657561427,-1.14E-08,-1.58E-05,2.5,6.85,7.25,0.384799631483879,36.5,0.84,1,2
+19,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.86,,
+20,August 6 - August 13,13,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.45,,
+21,August 6 - August 13,13,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,0.08,,
+1,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7,0.362021190706543,16.6,,1,10
+2,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+3,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+4,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+5,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+6,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7,0.336623034758929,14,,1.4,8
+7,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7.35,0.341550588858309,40.1,,1,1
+8,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7.05,0.368380852474042,29,,0.8,0
+9,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+10,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7.05,0.348043263162953,31,,1,13
+11,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+12,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+13,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+14,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+15,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+16,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7.25,0.344443693338912,36.3,,0.8,2
+17,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+18,August 13 - August 20,14,Extended,Regular late autumn (extended group only),NA,NA,NA,0.5,NA,7.25,0.381777980836795,36.7,,1,4
+19,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+20,August 13 - August 20,14,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+21,August 13 - August 20,14,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+1,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.8295137,-5.86E-08,-8.12E-05,-1.5,8.95,6.95,0.352274157000417,,,,3
+2,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+3,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+4,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+5,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+6,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.563511274,1.85E-08,2.56E-05,-1.5,8.3,7.15,0.328969005800345,,,,3
+7,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.607430114,-1.34E-08,-1.86E-05,-1.5,4.5,7.6,0.33309233858655,,,,1
+8,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.968469101,8.52E-09,1.18E-05,-1.5,7.85,7.2,0.354750394655008,,,,0
+9,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+10,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.493529233,-9.53E-10,-1.32E-06,-1.5,6.1,7.25,0.341765185371904,,,,20
+11,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+12,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+13,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+14,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+15,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+16,August 20 - August 27,15,Extended,Regular late autumn (extended group only),1.07551267,-3.3E-09,-4.57E-06,-1.5,6.2,7.55,0.342179892368069,,,,0
+17,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+18,August 20 - August 27,15,Extended,Regular late autumn (extended group only),0.995349786,8.7E-09,1.21E-05,-1.5,4.95,7.05,0.368905810100008,,,,2
+19,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+20,August 20 - August 27,15,Control,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
+21,August 20 - August 27,15,Heatwave,Regular late autumn (extended group only),NA,NA,NA,NA,NA,NA,NA,,,,
