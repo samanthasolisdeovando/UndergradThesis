@@ -6,7 +6,7 @@ head(my_data)
 levels(my_data$Treatment)
 my_data$Treatment <- ordered(my_data$Treatment,
                              levels = c("Extended", "Control", "Heatwave"))
-
+ 
 ############### FILTERED DATABASES ###############
 library(dplyr)
 
