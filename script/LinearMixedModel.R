@@ -1,4 +1,4 @@
-############ source: Our Coding Club ###########
+############ source: Coding Club ###########
 ###### edited by Samantha Solis de Ovando ######
 
 library(readr)
