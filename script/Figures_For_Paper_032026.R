@@ -208,7 +208,183 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = T
 
 #### multi-panel figure ####
 
-############## SOIL  ##############
+############## ABIOTIC SOIL PROPERTIES  ##############
+
+####### SOIL MOISTURE #######
+### scatter with linear regression line ###
+#file name: SoilMoisture_Scatter_LinearRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil Moisture"
+  ) +
+  theme_minimal()
+
+### scatter with local regression line ###
+#file name: SoilMoisture_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil Moisture"
+  ) +
+  theme_minimal()
+
+#################### SOIL PH ####################
+
+### scatter with linear regression line ###
+#file name: SoilpH_Scatter_LinearRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil pH"
+  ) +
+  theme_minimal()
+
+### scatter with local regression line ###
+#file name: SoilpH_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil pH"
+  ) +
+  theme_minimal()
+
+################### PLANT PHYSIOLOGICAL RESPONSE #######################
+
+#### EVAPOTRANSPIRATION ###
+# Pot water loss / week. ET proxy. 
+
+### scatter with linear regression line ###
+#file name: Evapotranspiration_Scatter_LinearRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Evapotranspiration (Kg lost/week)"
+  ) +
+  theme_minimal()
+
+### scatter with local regression line ###
+#file name: Evapotranspiration_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil Moisture"
+  ) +
+  theme_minimal()
 
 
 ####### BOX PLOTS - add significance lines BETWEEN BOXES! ######
