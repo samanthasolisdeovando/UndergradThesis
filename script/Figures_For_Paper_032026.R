@@ -363,7 +363,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate,
 
 library(ggplot2)
 
-ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
   geom_smooth(aes(fill = Treatment),
               method = "loess",
@@ -382,7 +382,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color
   )) +
   labs(
     x = "Week",
-    y = "Soil Moisture"
+    y = "Evapotranspiration (Kg lost/week)"
   ) +
   theme_minimal()
 
