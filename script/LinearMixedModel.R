@@ -16,18 +16,30 @@ head(master_data_modelling)
 hist(master_data_modelling$CO2flux)
 
 #pH
+hist(master_data_modelling$MEANpH)
 
 #moisture
+hist(master_data_modelling$MeanSoilMoisture)
 
 #evapotranspiration
+hist(master_data_modelling$EvapotranspirationRate)
 
 #meanGCC
+hist(master_data_modelling$meanGCC)
 
 #cover
+hist(master_data_modelling$CanopyExtent)
 
 #canopy height
+hist(master_data_modelling$canopyheight)
 
+### IMPORTANT ### 
+### NONE OF THE RESPONSE VARIABLES HAVE A NORMAL DISTRIBUTION ###
+############## THIS IS DUE DATA BEING REPEATED MEASURES ON THE SAME SAMPLES ###########
+
+########################################################################
 ########################## BASIC LINEAR MODEL ##########################
+########################################################################
 
 #### plant productivity #####
 
