@@ -477,12 +477,64 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CH4flux, color = Treatm
   ) +
   theme_minimal()
 
+##########################################
 ### Scatter with local regression line ###
-#File name: CH4_Scatter_LocalRegression
+#File name: CH4_Scatter_LocalRegression###
+##### includes dashed season lines (needs to be updaed) - not working:
+#mid-summer line is missing, text overlapping
 
 library(ggplot2)
+#added for season labels
+library(dplyr)
+season_blocks <- plotting_with_time %>%
+  filter(!is.na(SeasonLabels), !is.na(measurement.week)) %>%
+  group_by(SeasonLabels) %>%
+  summarise(
+    xmin = min(measurement.week),
+    xmax = max(measurement.week),
+    xmid = (xmin + xmax) / 2,
+    .groups = "drop"
+  )
+heatwave_start <- 5
+heatwave_end <- 7
 
+yr <- range(plotting_with_time$CH4flux, na.rm = TRUE)
+y_label <- yr[1] - 0.15 * diff(yr)
+
+### scatter original
 ggplot(plotting_with_time, aes(x = measurement.week, y = CH4flux, color = Treatment)) +
+
+##### heatwave shaded block ######
+  geom_rect(
+    aes(xmin = heatwave_start, xmax = heatwave_end,
+        ymin = -Inf, ymax = Inf),
+    inherit.aes = FALSE,
+    fill = "#ffdbdc",
+    alpha = 0.15
+  ) +
+  
+#### dashed season lines #####
+geom_vline(
+  data = season_blocks,
+  aes(xintercept = xmin),
+  linetype = "dashed",
+  color = "black",
+  alpha = 0.6
+) +
+  
+### season labels ###
+  geom_text(
+    data = season_blocks,
+    aes(x = xmid, y = y_label, label = gsub(" ", "\n", SeasonLabels)),
+    inherit.aes = FALSE,
+    color = "black",
+    size = 3,
+    lineheight = 0.9
+  ) +
+  
+  expand_limits(y = y_label)+
+
+  ##############################
   geom_point(alpha = 0.6, na.rm = TRUE) +
   geom_smooth(aes(fill = Treatment),
               method = "loess",
