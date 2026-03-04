@@ -4,7 +4,9 @@
 ####################### LOAD DATA FOR MODELLING #######################
 library(readr)
 
+### before doing this step, set working directory: setwd("~/Documents/UndergradThesis/data")
 ### this is the ONLY sheet I should use for modelling ##
+
 master_data_modelling <- read_csv("MasterDataSheet_UGthesis_Feb232026.csv")
 
 #show headings
@@ -44,7 +46,7 @@ hist(master_data_modelling$canopyheight)
 #### plant productivity #####
 
 #greenness (scale 0-1)
-basic.lm <- lm(meanGCC ~ MeanSoilMoisture, data = master_data_modelling)
+basic.lm <- lm(meanGCC ~ canopyheight, data = master_data_modelling)
 summary(basic.lm)
 
 #cover (scale 0-1)

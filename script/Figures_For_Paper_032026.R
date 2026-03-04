@@ -12,6 +12,107 @@ shifted_data <- original_data %>%
   mutate(measurement.week = ifelse(Treatment == "Extended",
                                    measurement.week - 2,
                                    measurement.week))
-
 #print CSV
-write.csv(shifted_data, "shifted_dataset.csv", row.names = FALSE)
+#write.csv(shifted_data, "shifted_dataset.csv", row.names = FALSE)
+
+###########################################################################
+################################# FIGURES #################################
+###########################################################################
+
+### IMPORTANT: USE THIS DATA WHEN PLOTTING BY TIME
+plotting_with_time <- read.csv("shifted_dataset.csv")
+
+
+############## PLANT PRODUCTIVITY ##############
+
+####### GREENNESS #######
+
+## Scatter plot with linear best fit and SE ribbon ##
+
+### figure file name = GCC_Scatter_Linear_Ribbon
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = meanGCC, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "GCC"
+  ) +
+  theme_minimal()
+
+#############################################
+## Scatter plot with local regression line ##
+#file name of figure: GCC_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = meanGCC, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "GCC"
+  ) +
+  theme_minimal()
+
+###################### CANOPY HEIGHT ######################
+
+### trouble shooting - plots not coming out right:
+str(plotting_with_time$canopyheight)
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = canopyheight, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Canopy Height"
+  ) +
+  theme_minimal()
+
+####### BOX PLOTS - add significance lines BETWEEN BOXES! ######
