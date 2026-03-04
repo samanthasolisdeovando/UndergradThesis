@@ -205,6 +205,9 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = T
   ) +
   theme_minimal()
 
+
+#### multi-panel figure ####
+
 ############## SOIL  ##############
 
 
