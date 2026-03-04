@@ -386,5 +386,124 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate,
   ) +
   theme_minimal()
 
+###################### ECOSYSTEM GAS FLUXES #######################
 
+############ CO2 respiration #########
+
+### scatter with linear regression line ###
+#file name: CO2_Scatter_LinearRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = CO2flux, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "CO2 respiration"
+  ) +
+  theme_minimal()
+
+### Scatter with local regression line ###
+#File name: CO2_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = CO2flux, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "CO2 respiration"
+  ) +
+  theme_minimal()
+
+
+############### CH4 Respiration ###############
+
+### scatter with linear regression line ###
+#file name: CH4_Scatter_LinearRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = CH4flux, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "CH4 respiration"
+  ) +
+  theme_minimal()
+
+### Scatter with local regression line ###
+#File name: CH4_Scatter_LocalRegression
+
+library(ggplot2)
+
+ggplot(plotting_with_time, aes(x = measurement.week, y = CH4flux, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "CH4 respiration"
+  ) +
+  theme_minimal()
+
+####### BOX PLOTS COMPARING SEASONS ###
 ####### BOX PLOTS - add significance lines BETWEEN BOXES! ######
