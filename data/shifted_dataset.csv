@@ -1,4 +1,4 @@
-PotID,Week.dates,measurement.week,Treatment,Season,SeasonLablels,CO2flux,CH4flux,mgCH4,averageTemp,MeanSoilMoisture,MEANpH,meanGCC,canopyheight,EvapotranspirationRate,graminoid.cover,shrub.cover,forb.cover,bryophyte.cover,CanopyExtent
+PotID,Week.dates,measurement.week,Treatment,Season,SeasonLabels,CO2flux,CH4flux,mgCH4,averageTemp,MeanSoilMoisture,MEANpH,meanGCC,canopyheight,EvapotranspirationRate,graminoid.cover,shrub.cover,forb.cover,bryophyte.cover,CanopyExtent
 1,May 13 2025 - May 21 2025,-1,Extended,Early summer,Earlier summer,NA,NA,NA,10,5.85,7.45,0.307899514,NA,1.4,0.08,0.03,0.03,0.17,0.31
 1,May 21 2025 - May 28 2025,0,Extended,Early summer,Earlier summer,NA,NA,NA,10,4.7,7.55,0.312768574,NA,1.4,0.1,0.08,0.05,0.18,0.41
 1,May 28 - June 4,1,Extended,Mid-summer,Mid-summer,NA,NA,NA,10,7.5,7.3,0.320288652,NA,1.8,0.12,0.18,0.1,0.2,0.6
