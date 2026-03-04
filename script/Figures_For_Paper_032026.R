@@ -205,4 +205,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = T
   ) +
   theme_minimal()
 
+############## SOIL  ##############
+
+
 ####### BOX PLOTS - add significance lines BETWEEN BOXES! ######
