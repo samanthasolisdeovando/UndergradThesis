@@ -244,7 +244,7 @@ make_poster_plot <- function(df, y_col, y_lab) {
     CAGPoster_theme
 }
 
-p1 <- make_poster_plot(plotting_with_time, "meanGCC", "GCC")
+p1 <- make_poster_plot(plotting_with_time, "meanGCC", "Greenness")
 p2 <- make_poster_plot(plotting_with_time, "canopyheight", "Canopy height (cm)")
 p3 <- make_poster_plot(plotting_with_time, "CanopyExtent", "Cover")
 
