@@ -1,8 +1,8 @@
 PotID,Week.dates,measurement.week,Treatment,Season,SeasonLabels,CO2flux,CH4flux,mgCH4,averageTemp,MeanSoilMoisture,MEANpH,meanGCC,canopyheight,EvapotranspirationRate,graminoid.cover,shrub.cover,forb.cover,bryophyte.cover,CanopyExtent
 1,May 13 2025 - May 21 2025,-1,Extended,Early summer,Earlier summer,NA,NA,NA,10,5.85,7.45,0.307899514,NA,1.4,0.08,0.03,0.03,0.17,0.31
 1,May 21 2025 - May 28 2025,0,Extended,Early summer,Earlier summer,NA,NA,NA,10,4.7,7.55,0.312768574,NA,1.4,0.1,0.08,0.05,0.18,0.41
-1,May 28 - June 4,1,Extended,Mid-summer,Mid-summer,NA,NA,NA,10,7.5,7.3,0.320288652,NA,1.8,0.12,0.18,0.1,0.2,0.6
-1,June 4 - June 11,2,Extended,Mid-summer,Mid-summer,NA,NA,NA,10,8.9,7.05,0.326933146,10.3,1.6,0.2,0.2,0.12,0.2,0.72
+1,May 28 - June 4,1,Extended,Early summer,Mid-summer,NA,NA,NA,10,7.5,7.3,0.320288652,NA,1.8,0.12,0.18,0.1,0.2,0.6
+1,June 4 - June 11,2,Extended,Early summer,Mid-summer,NA,NA,NA,10,8.9,7.05,0.326933146,10.3,1.6,0.2,0.2,0.12,0.2,0.72
 1,June 11 - June 18,3,Extended,Mid-summer,Mid-summer,NA,NA,NA,10,8.05,7.3,0.331982877,18.6,1.2,0.22,0.22,0.13,0.12,0.69
 1,June 18 - June 25,4,Extended,Mid-summer,Mid-summer,2.338807989,8.51E-09,1.18E-05,10,10,6.65,0.336344052,19,1.6,0.25,0.23,0.15,0.1,0.73
 1,June 25 - July 2,5,Extended,Late summer / heatwave,Late summer / heatwave,NA,NA,NA,10,9.55,7.05,0.340186078,19.1,1.4,0.27,0.25,0.2,0.08,0.8

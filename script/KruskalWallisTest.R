@@ -1,12 +1,26 @@
 library(readr)
 library(dplyr)
 library("ggpubr")
-my_data <- read.csv(file.choose("AllVariablesSpreadsheet_updated_Feb62026.csv"))
+my_data <- read.csv(file.choose("shifted_dataset.csv"))
 head(my_data)
 levels(my_data$Treatment)
 my_data$Treatment <- ordered(my_data$Treatment,
                              levels = c("Extended", "Control", "Heatwave"))
+
+#########################################################
+#### UPDATED FILTERED DATABASES (using shifted_data) ####
+#########################################################
+library(dplyr)
+early_summer <- my_data %>%
+  filter(
+    (Season == "Early summer")
+  )
  
+kruskal.test(meanGCC ~ Treatment, data = early_summer)
+
+
+
+##################################################
 ############### FILTERED DATABASES ###############
 library(dplyr)
 
