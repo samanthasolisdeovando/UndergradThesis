@@ -11,12 +11,12 @@ my_data$Treatment <- ordered(my_data$Treatment,
 #### UPDATED FILTERED DATABASES (using shifted_data) ####
 #########################################################
 library(dplyr)
-heatwave_data <- my_data %>%
+Autumn_data <- my_data %>%
   filter(
-    (Season == "Late summer / heatwave")
+    (Season == "Autumn")
   )
  
-kruskal.test(meanGCC ~ Treatment, data = heatwave_data)
+kruskal.test(CH4flux ~ Treatment, data = Autumn_data)
 
 library(dplyr)
 

@@ -731,15 +731,15 @@ box_data <- plotting_with_time %>%
     levels = c("Early summer", "Mid-summer", "Late summer / heatwave", "Autumn"),
     labels = c("Early summer", "Mid-summer", "Heat wave", "Autumn"))
   ) %>%
-  filter(!is.na(meanGCC))
+  filter(!is.na(CH4flux))
 
-p <- ggplot(box_data, aes(x = Treatment, y = meanGCC, fill = Treatment)) +
+p <- ggplot(box_data, aes(x = Treatment, y = CH4flux, fill = Treatment)) +
   geom_boxplot(width = 0.7, outlier.alpha = 0.6) +
   facet_grid(. ~ Season) +
   labs(
-    title = "GCC by treatment across seasons",
+    title = "Methane respiration by treatment across seasons",
     x = "",
-    y = "GCC",
+    y = "Methane respiration",
     fill = "Treatment"
   ) +
   scale_fill_manual(values = c(
@@ -747,7 +747,7 @@ p <- ggplot(box_data, aes(x = Treatment, y = meanGCC, fill = Treatment)) +
     "Extended" = "#2E7D32",
     "Heatwave" = "#D55E00"
   )) +
-  theme_minimal(base_size = 50) +
+  theme_minimal(base_size = 12) +
   theme(
     legend.position = "right",
     strip.text = element_text(face = "bold"),
@@ -774,15 +774,15 @@ box_data <- plotting_with_time %>%
       levels = c("Early summer", "Mid-summer", "Late summer / heatwave", "Autumn"),
       labels = c("Early summer", "Mid-summer", "Heat wave", "Autumn"))
   ) %>%
-  filter(!is.na(canopyheight))
+  filter(!is.na(MEANpH))
 
-p <- ggplot(box_data, aes(x = Treatment, y = canopyheight, fill = Treatment)) +
+p <- ggplot(box_data, aes(x = Treatment, y = MEANpH, fill = Treatment)) +
   geom_boxplot(width = 0.7, outlier.alpha = 0.6) +
   facet_grid(. ~ Season) +
   labs(
     title = "Canopy Height by treatment across seasons",
     x = "",
-    y = "GCC",
+    y = "Canopy height",
     fill = "Treatment"
   ) +
   scale_fill_manual(values = c(
