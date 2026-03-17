@@ -13,10 +13,11 @@ my_data$Treatment <- ordered(my_data$Treatment,
 library(dplyr)
 Autumn_data <- my_data %>%
   filter(
+    (Treatment %in% c("Control", "Extended") &
     (Season == "Autumn")
-  )
+  ))
  
-kruskal.test(CH4flux ~ Treatment, data = Autumn_data)
+kruskal.test(MeanSoilMoisture ~ Treatment, data = my_data)
 
 library(dplyr)
 

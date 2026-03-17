@@ -56,3 +56,20 @@ summary(basic.lm)
 
 
 ###### mixed effects model ######
+### structure for my data: y∼Treatment∗measurement.week+(1∣Sample)
+### NEXT STEPS: run post-hoc to ID week
+install.packages("lmerTest")
+library(lmerTest)
+
+library(lme4)
+model2 <- lmer(CO2flux ~ Treatment * factor(measurement.week) + (1 | PotID), data = master_data_modelling) ##moisture*treatment = is there a difference in mositure by treatment
+summary(mixed.lmer)
+library(lmerTest)
+summary(linear.mixed.effects.model)
+
+library(emmeans)
+install.packages("emmeans")
+library(lme4)
+library(emmeans)
+emmeans(linear.mixed.effects.model,
+        pairwise ~ Treatment | measurement.week)
