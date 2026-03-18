@@ -58,6 +58,7 @@ species_scores$FunctionalGroup <- rownames(species_scores)
 
 ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
   geom_point(size = 3, alpha = 0.7) +
+  stat_ellipse(aes(group = Treatment), linewidth = 1) +
   geom_segment(data = species_scores,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
                arrow = arrow(length = unit(0.2, "cm")),
@@ -133,14 +134,3 @@ ggboxplot(master_data, x = "Treatment", y = "MEANpH",
           color = "Treatment", palette = c("#1F77B4", "#FF7F0E", "#2CA02C"),
           ylab = "pH", xlab = "Treatment",
           title = "pH")
-
-
-################################################################################
-################################################################################
-############################ PCA using FactoMineR ##############################
-################################################################################
-################################################################################
-
-
-
-
