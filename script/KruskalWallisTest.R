@@ -176,10 +176,10 @@ ggscatter(my_data, x = "averageTemp", y = "CO2flux",
 
 ### filter by season and treatment
 library(dplyr)
-heatwave_data <- my_data %>%
+ext_peak_summr <- my_data %>%
   filter(
-    (Treatment %in% c("Control", "Heatwave") &
-       (Season == "Autumn")
+    (Treatment %in% c("Extended", "Control") &
+       (measurement.week == "5")
     ))
 
 ### filter by treatment only
@@ -197,4 +197,7 @@ week_data <- my_data %>%
        (Treatment == "Extended" &
           measurement.week == "13")
     ))
-kruskal.test(meanGCC ~ Treatment, data = heatwave_data)
+
+kruskal.test(CanopyExtent ~ Treatment, data = ext_peak_summr)
+
+
