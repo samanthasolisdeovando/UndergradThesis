@@ -5,17 +5,19 @@ library("ggpubr")
 master_data <- read.csv(file.choose("MasterDataSheet_UGthesis_Feb232026"))
 head(master_data)
 
-########### exclude weeks 13, 14, 15 ##########
+########### only 1 timepoint dataset ##########
 library(dplyr)
-master_data_filtered <- master_data %>%
-  filter(!measurement.week %in% c(13, 14, 15))
+only_june_11 <- master_data %>%
+  filter(measurement.week == "5")
+
+#write.csv(only_june_11, file = "june11_data_rowIDadded.csv")
 
 ### add row ID ###
-master_data_filtered <- master_data_filtered %>%
+only_june_11 <- only_june_11 %>%
   mutate(row_id = row_number())
 
 ########## create community matrix for ONLY funct grp ##########
-community_matrix <- master_data_filtered %>%
+community_matrix <- only_june_11 %>%
   select(shrub.cover, graminoid.cover, bryophyte.cover, forb.cover)
 
 ######### Hellinger transformation ##########
@@ -29,16 +31,18 @@ pca_model <- rda(community_hellinger)
 ########## extract site scores ##########
 pca_scores <- as.data.frame(scores(pca_model, display = "sites"))
 
-pca_scores$row_id <- master_data_filtered$row_id
+pca_scores$row_id <- only_june_11$row_id
 
-######### join back to master data filtered ##########
-master_data_filtered_with_pca <- master_data_filtered %>%
+######### join PCA scores back to datasheet ##########
+June_11_PCA <- only_june_11 %>%
   left_join(pca_scores, by = "row_id")
+
+#write.csv(June_11_PCA, file = "June_11_PCA.csv")
 
 ######### PCA score scatter plot ##########
 library(ggplot2)
 
-ggplot(master_data_filtered_with_pca, aes(x = PC1, y = PC2, color = Treatment)) +
+ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
   geom_point(size = 3, alpha = 0.8) +
   theme_classic() +
   labs(
@@ -52,7 +56,7 @@ ggplot(master_data_filtered_with_pca, aes(x = PC1, y = PC2, color = Treatment)) 
 species_scores <- as.data.frame(scores(pca_model, display = "species"))
 species_scores$FunctionalGroup <- rownames(species_scores)
 
-ggplot(master_data_filtered_with_pca, aes(x = PC1, y = PC2, color = Treatment)) +
+ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
   geom_point(size = 3, alpha = 0.7) +
   geom_segment(data = species_scores,
                aes(x = 0, y = 0, xend = PC1, yend = PC2),
@@ -109,7 +113,7 @@ ggplot(master_data_filtered_with_pca, aes(x = PC1, y = canopyheight, color = Tre
   geom_smooth(method = "lm", se = TRUE) +
   theme_minimal()
 
-#### if above does not work, exlude NAs ####
+#### exlude NAs (only for variables w NA) ####
 ggplot(master_data_filtered_with_pca, aes(x = PC1, y = MEANpH, color = Treatment, group = Treatment)) +
   geom_point(na.rm = TRUE) +
   geom_smooth(method = "lm", na.rm = TRUE) +
@@ -127,6 +131,18 @@ ggplot(data_clean_evapotranspiration_wPCA, aes(x = PC1, y = EvapotranspirationRa
 library("ggpubr")
 ggboxplot(master_data, x = "Treatment", y = "MEANpH", 
           color = "Treatment", palette = c("#1F77B4", "#FF7F0E", "#2CA02C"),
-          order = c("Control", "Heatwave", "Extended"),
           ylab = "pH", xlab = "Treatment",
           title = "pH")
+
+
+################################################################################
+################################################################################
+############################ PCA using FactoMineR ##############################
+################################################################################
+################################################################################
+
+install.packages("FactoMineR")
+library("FactoMineR"")
+
+
+
