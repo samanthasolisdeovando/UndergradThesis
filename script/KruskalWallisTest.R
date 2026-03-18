@@ -174,4 +174,27 @@ ggscatter(my_data, x = "averageTemp", y = "CO2flux",
           ylab = "CO2 respiration", xlab = "Temperature",
           title = "CO2 respiration by Temperature")
 
-kruskal.test(CO2flux ~ Treatment, data = filtered_data_base_summerandautumncTRLandEXTend)
+### filter by season and treatment
+library(dplyr)
+heatwave_data <- my_data %>%
+  filter(
+    (Treatment %in% c("Control", "Heatwave") &
+       (Season == "Autumn")
+    ))
+
+### filter by treatment only
+library(dplyr)
+heatwave_data <- my_data %>%
+  filter(
+    (Treatment %in% c("Control", "Heatwave")
+    ))
+### filter by week
+library(dplyr)
+week_data <- my_data %>%
+  filter(
+    (Treatment == "Control" &
+       measurement.week == "12" |
+       (Treatment == "Extended" &
+          measurement.week == "13")
+    ))
+kruskal.test(meanGCC ~ Treatment, data = heatwave_data)
