@@ -516,7 +516,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate,
 
 library(ggplot2)
 
-ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate, color = Treatment)) +
+ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
   geom_smooth(aes(fill = Treatment),
               method = "loess",
@@ -535,9 +535,9 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate,
   )) +
   labs(
     x = "Week",
-    y = "Evapotranspiration (Kg lost/week)"
+    y = "pH"
   ) +
-  theme_minimal(base_size = 26)
+  theme_minimal(base_size = 14)
 
 ###################### ECOSYSTEM GAS FLUXES #######################
 
