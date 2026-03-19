@@ -10,7 +10,7 @@ library(dplyr)
 original_data <- read.csv("MasterDataSheet_UGthesis_Feb232026.csv")
 shifted_data <- original_data %>%
   mutate(measurement.week = ifelse(Treatment == "Extended",
-                                   measurement.week - 2,
+                                   measurement.week - 3,
                                    measurement.week))
 #print CSV
 #write.csv(shifted_data, "shifted_dataset.csv", row.names = FALSE)
@@ -31,7 +31,7 @@ plotting_with_time$canopyheight <- as.numeric(as.character(plotting_with_time$ca
 ## Scatter plot with linear best fit and SE ribbon ##
 
 ### figure file name = GCC_Scatter_Linear_Ribbon
-
+#### save graphs as 675x600 for paper
 library(ggplot2)
 
 ggplot(plotting_with_time, aes(x = measurement.week, y = meanGCC, color = Treatment)) +
@@ -155,7 +155,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = canopyheight, color = T
 
 library(ggplot2)
 
-ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = Treatment)) +
+ggplot(plotting_with_time, aes(x = measurement.week, y = Cover, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
   geom_smooth(aes(fill = Treatment),
               method = "lm",
@@ -183,7 +183,7 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = T
 
 library(ggplot2)
 
-ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = Treatment)) +
+ggplot(plotting_with_time, aes(x = measurement.week, y = Cover, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
   geom_smooth(aes(fill = Treatment),
               method = "loess",
@@ -206,6 +206,155 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = CanopyExtent, color = T
   ) +
   theme_minimal()
 
+##############################################################################
+######################### multi-panel figure for paper #######################
+######################### Plant growth and greenness #########################
+##############################################################################
+
+
+library(ggplot2)
+library(patchwork)
+
+p1 <- ggplot(plotting_with_time, aes(x = measurement.week, y = Cover, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = NULL,
+    y = "Cover"
+  ) +
+  theme_minimal()
+p2 <- ggplot(plotting_with_time, aes(x = measurement.week, y = canopyheight, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = NULL,
+    y = "Canopy height"
+  ) +
+  theme_minimal()
+p3 <- ggplot(plotting_with_time, aes(x = measurement.week, y = meanGCC, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = NULL,
+    y = "GCC"
+  ) +
+  theme_minimal()
+p4 <- ggplot(plotting_with_time, aes(x = measurement.week, y = Cover, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Cover"
+  ) +
+  theme_minimal()
+p5 <- ggplot(plotting_with_time, aes(x = measurement.week, y = canopyheight, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Canopy height"
+  ) +
+  theme_minimal()
+p6 <- ggplot(plotting_with_time, aes(x = measurement.week, y = meanGCC, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "GCC"
+  ) +
+  theme_minimal()
+
+(p1 | p2 | p3) / (p4 | p5 | p6) +
+  plot_layout(guides = "collect") +
+  plot_annotation(tag_levels = "A") &
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(face = "bold", size = 12)
+  )
 
 ##### FOR POSTER ###########
 #### multi-panel figure ####
@@ -539,6 +688,169 @@ ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatme
   ) +
   theme_minimal(base_size = 14)
 
+##########################################################################
+##################### Multi-panel figure for paper #######################
+######################## Soil mositure & soil pH #########################
+##########################################################################
+
+library(ggplot2)
+library(patchwork)
+
+p1 <- ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil Mositure (0-10)"
+  ) +
+  theme_minimal()
+
+p2 <- ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil pH (0-14)"
+  ) +
+  theme_minimal()
+p3 <- ggplot(plotting_with_time, aes(x = measurement.week, y = MeanSoilMoisture, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil Mositure (0-10)"
+  ) +
+  theme_minimal()
+
+p4 <- ggplot(plotting_with_time, aes(x = measurement.week, y = MEANpH, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Soil pH (0-14)"
+  ) +
+  theme_minimal()
+
+(p1 | p2) / (p3 | p4) +
+  plot_layout(guides = "collect") +
+  plot_annotation(tag_levels = "A") &
+  theme(legend.position = "bottom")
+
+###########################################################################
+####################### Multi-panel figure for paper ######################
+########################### Evapotranspiration ############################
+###########################################################################
+
+library(ggplot2)
+library(patchwork)
+
+p1 <- ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "loess",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Evapotranspiration (Kg lost/week)"
+  ) +
+  theme_minimal()
+
+p2 <- ggplot(plotting_with_time, aes(x = measurement.week, y = EvapotranspirationRate, color = Treatment)) +
+  geom_point(alpha = 0.6, na.rm = TRUE) +
+  geom_smooth(aes(fill = Treatment),
+              method = "lm",
+              se = TRUE,
+              alpha = 0.2,
+              na.rm = TRUE) +
+  scale_color_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  scale_fill_manual(values = c(
+    "Control" = "#1E88E5",
+    "Extended" = "#228B22",
+    "Heatwave" = "#F57F17"
+  )) +
+  labs(
+    x = "Week",
+    y = "Evapotranspiration (Kg lost/week)"
+  ) +
+  theme_minimal()
+
+(p1 | p2) +
+  plot_layout(guides = "collect") +
+  plot_annotation(tag_levels = "A") &
+  theme(legend.position = "bottom")
+
 ###################### ECOSYSTEM GAS FLUXES #######################
 
 ############ CO2 respiration #########
@@ -790,7 +1102,7 @@ p <- ggplot(box_data, aes(x = Treatment, y = MEANpH, fill = Treatment)) +
     "Extended" = "#2E7D32",
     "Heatwave" = "#D55E00"
   )) +
-  theme_minimal(base_size = 50) +
+  theme_minimal(base_size = 12) +
   theme(
     legend.position = "right",
     strip.text = element_text(face = "bold"),
