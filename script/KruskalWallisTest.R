@@ -176,10 +176,10 @@ ggscatter(my_data, x = "averageTemp", y = "CO2flux",
 
 ### filter by season and treatment
 library(dplyr)
-spring_extended <- my_data %>%
+season_trt <- my_data %>%
   filter(
     (Treatment %in% c("Extended", "Control") &
-       (measurement.week %in% c("-1", "0", "1", "2", "3", "4", "5"))
+       (Season == "Autumn")
     ))
 
 ### filter by treatment only
@@ -198,7 +198,14 @@ week_data <- my_data %>%
           measurement.week == "13")
     ))
 
-kruskal.test(MeanSoilMoisture ~ Treatment, data = spring_extended)
+###filter by season only
+library(dplyr)
+season_data <- my_data %>%
+  filter(
+    (Season == "Summer")
+    )
+
+kruskal.test(MEANpH ~ Treatment, data = season_data)
 
 #summary stats
 library(dplyr)
