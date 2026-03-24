@@ -37,15 +37,15 @@ autumn_data <- thesis_data %>%
 
 ########################## stats #############################
 #summary stats
-heatwave_data %>% 
+autumn_data %>% 
   group_by(Treatment) %>%
   get_summary_stats(meanGCC, type = "common")
 
 #box plot for 1 variable by Treatment
-ggboxplot(heatwave_data, x = "Treatment", y = "meanGCC")
+ggboxplot(autumn_data, x = "Treatment", y = "meanGCC")
 
 #Kruskal-Test (rstatix)
-res.kruskal <- heatwave_data %>% kruskal_test(meanGCC ~ Treatment)
+res.kruskal <- autumn_data %>% kruskal_test(meanGCC ~ Treatment)
 res.kruskal
 
 #Effect size
@@ -53,10 +53,10 @@ res.kruskal
 # 0.01- < 0.06 (small effect)
 # 0.06 - < 0.14 (moderate effect)
 # >= 0.14 (large effect)
-heatwave_data %>% kruskal_effsize(meanGCC ~ Treatment)
+autumn_data %>% kruskal_effsize(meanGCC ~ Treatment)
 
 #Dunn's Test - pairwise comparisons
-pwc <- heatwave_data %>% 
+pwc <- autumn_data %>% 
   dunn_test(meanGCC ~ Treatment, p.adjust.method = "bonferroni") 
 pwc
 
