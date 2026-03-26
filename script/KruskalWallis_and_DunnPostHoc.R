@@ -43,15 +43,15 @@ autumn_cold_data <- thesis_data %>%
 
 ########################## stats #############################
 #summary stats
-thesis_data %>% 
+autumn_warm_data %>% 
   group_by(Season) %>%
   get_summary_stats(CO2flux, type = "common")
 
 #box plot for 1 variable by Treatment
-ggboxplot(thesis_data, x = "Season", y = "CO2flux")
+ggboxplot(autumn_cold_data, x = "Treatment", y = "CO2flux")
 
 #Kruskal-Test (rstatix)
-res.kruskal <- thesis_data %>% kruskal_test(CO2flux ~ Season)
+res.kruskal <- thesis_data %>% kruskal_test(Cover ~ Season)
 res.kruskal
 
 #Effect size
@@ -59,7 +59,7 @@ res.kruskal
 # 0.01- < 0.06 (small effect)
 # 0.06 - < 0.14 (moderate effect)
 # >= 0.14 (large effect)
-thesis_data %>% kruskal_effsize(CO2flux ~ Season)
+thesis_data %>% kruskal_effsize(Cover ~ Season)
 
 #Dunn's Test - pairwise comparisons
 pwc <- thesis_data %>% 
