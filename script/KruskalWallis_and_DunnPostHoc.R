@@ -29,23 +29,29 @@ heatwave_data <- thesis_data %>%
   filter(
     (Season == "Heatwave")
   )
-#autumn only data
-autumn_data <- thesis_data %>%
+#autumn warm only data
+autumn_warm_data <- thesis_data %>%
   filter(
-    (Season == "Autumn")
+    (Season == "Autumn warm")
+  )
+
+#autumn cold only data
+autumn_cold_data <- thesis_data %>%
+  filter(
+    (Season == "Autumn cold")
   )
 
 ########################## stats #############################
 #summary stats
-heatwave_data %>% 
-  group_by(Treatment) %>%
-  get_summary_stats(MeanSoilMoisture, type = "common")
+thesis_data %>% 
+  group_by(Season) %>%
+  get_summary_stats(CO2flux, type = "common")
 
 #box plot for 1 variable by Treatment
-ggboxplot(heatwave_data, x = "Treatment", y = "MeanSoilMoisture")
+ggboxplot(thesis_data, x = "Season", y = "CO2flux")
 
 #Kruskal-Test (rstatix)
-res.kruskal <- summer_data %>% kruskal_test(MeanSoilMoisture ~ Treatment)
+res.kruskal <- thesis_data %>% kruskal_test(CO2flux ~ Season)
 res.kruskal
 
 #Effect size
@@ -53,11 +59,11 @@ res.kruskal
 # 0.01- < 0.06 (small effect)
 # 0.06 - < 0.14 (moderate effect)
 # >= 0.14 (large effect)
-summer_data %>% kruskal_effsize(MeanSoilMoisture ~ Treatment)
+thesis_data %>% kruskal_effsize(CO2flux ~ Season)
 
 #Dunn's Test - pairwise comparisons
-pwc <- summer_data %>% 
-  dunn_test(MeanSoilMoisture ~ Treatment, p.adjust.method = "bonferroni") 
+pwc <- thesis_data %>% 
+  dunn_test(CO2flux ~ Season, p.adjust.method = "bonferroni") 
 pwc
 
 
