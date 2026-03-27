@@ -75,6 +75,7 @@ ggplot(data = thesis_data, aes(x = Treatment, y = CO2flux, fill = Treatment)) +
         axis.ticks.x = element_blank(),
         axis.title.x = element_text(size = 13, margin = margin(t = 12)),
         axis.title.y = element_text(size = 13, margin = margin(r = 12)),
+        axis.line = element_line(size = 3, colour = grey, linetype=2),
         panel.spacing = unit(1, "lines"),
         panel.border = element_rect(color = "grey", fill = NA, size = 1))
 
