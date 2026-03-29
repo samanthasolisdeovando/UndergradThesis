@@ -55,11 +55,11 @@ ggboxplot(autumn_cold_data, x = "Treatment", y = "CO2flux")
 #written by Juliana Dioquino
 #edited by Samantha Solis de Ovando
 
-ggplot(data = thesis_data, aes(x = Treatment, y = Cover, fill = Treatment)) +
+ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment)) +
   geom_boxplot(alpha = 0.8) +
   facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
   labs(x = "Treatment",
-       y = "Cover") +
+       y = "canopyheight") +
   geom_jitter(width = 0.12, alpha = 0.4, size = 1) +
   scale_fill_manual(values = c("Control" = "#1F77B4",
                                "Heatwave" = "#FF7F0E",
@@ -223,21 +223,21 @@ library(brms)
 
 ## defining my prior knowlkedge
 # intercept, baseline canopy height of the control plot of a given season
-my_prior_co2 <- set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumncold")
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumnwarm"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonSummer"))
+my_prior_height <- set_prior("normal(10,40)",class = "b",coef = "SeasonAutumncold")
+my_prior_height <- c(my_prior_co2,set_prior("normal(10,40)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(10,40)",class = "b",coef = "SeasonHeatwave"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(10,40)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "TreatmentHeatwave"))
 # treatmemt effect within a season
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
 
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_height <- c(my_prior_co2,set_prior("normal(0,40)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 
 
