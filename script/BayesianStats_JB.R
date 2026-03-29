@@ -55,11 +55,11 @@ ggboxplot(autumn_cold_data, x = "Treatment", y = "CO2flux")
 #written by Juliana Dioquino
 #edited by Samantha Solis de Ovando
 
-ggplot(data = thesis_data, aes(x = Treatment, y = meanGCC, fill = Treatment)) +
+ggplot(data = thesis_data, aes(x = Treatment, y = Cover, fill = Treatment)) +
   geom_boxplot(alpha = 0.8) +
   facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
   labs(x = "Treatment",
-       y = "meanGCC") +
+       y = "Cover") +
   geom_jitter(width = 0.12, alpha = 0.4, size = 1) +
   scale_fill_manual(values = c("Control" = "#1F77B4",
                                "Heatwave" = "#FF7F0E",
@@ -97,6 +97,9 @@ pwc <- thesis_data %>%
 pwc
 
 #### bayesian version ####
+#### Written by Jeremy Borderieux ####
+#### Edited by Samantha Solis de Ovando ####
+
 #### bayesian CO2 ####
 
 library(brms)
@@ -175,5 +178,80 @@ pp_check(model_gcc)
 
 summary(model_gcc)
 
+### bayesian Cover ###
+
+library(brms)
+
+## defining my prior knowlkedge
+# intercept, baseline cover of the control plot of a given season
+my_prior_cover <- set_prior("normal(0.6,0.3)",class = "b",coef = "SeasonAutumncold")
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0.6,0.3)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0.4,0.3)",class = "b",coef = "SeasonHeatwave"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0.2,0.3)",class = "b",coef = "SeasonSummer"))
+# treatment effect of autumn cold
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "TreatmentHeatwave"))
+# treatmemt effect within a season
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 
+
+
+model_cover <- brm(Cover | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+                 data = thesis_data, # data
+                 family = gaussian(), # the data looks normally distributed
+                 iter = 6000, # number of computation, the more the better
+                 warmup = 2000, # number of discarded computation 
+                 cores = 3, # this is to speed up the co;putation
+                 prior = my_prior_co2,
+                 chains = 3,# this is the nu;ber of chain, independant model
+                 init = 0) # makes the computation more stable 
+
+plot(model_cover) # assess model convergence, eith fuzzy caterpillar
+pp_check(model_cover)
+summary(model_cover)
+
+#### Bayesian canopy height ####
+
+library(brms)
+
+## defining my prior knowlkedge
+# intercept, baseline canopy height of the control plot of a given season
+my_prior_co2 <- set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumncold")
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonHeatwave"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonSummer"))
+# treatment effect of autumn cold
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
+# treatmemt effect within a season
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+
+
+
+
+model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+                 data = thesis_data, # data
+                 family = gaussian(), # the data looks normally distributed
+                 iter = 6000, # number of computation, the more the better
+                 warmup = 2000, # number of discarded computation 
+                 cores = 3, # this is to speed up the co;putation
+                 prior = my_prior_co2,
+                 chains = 3,# this is the nu;ber of chain, independant model
+                 init = 0) # makes the computation more stable 
+
+plot(model_height) # assess model convergence, eith fuzzy caterpillar
+pp_check(model_height)
+summary(model_height)
