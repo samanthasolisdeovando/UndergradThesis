@@ -158,7 +158,7 @@ model_co2 <- brm(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # mode
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
-plot(model_co2) # assess model convergence, eith fuzzy caterpillar
+plot(model_co2) # assess model convergence, with fuzzy caterpillar
 pp_check(model_co2)
 summary(model_co2)
 
@@ -277,6 +277,6 @@ model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID)
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
-plot(model_height) # assess model convergence, eith fuzzy caterpillar
+plot(model_height) # assess model convergence, with fuzzy caterpillar
 pp_check(model_height)
 summary(model_height)
