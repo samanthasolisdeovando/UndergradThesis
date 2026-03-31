@@ -113,4 +113,7 @@ ggplot(data = full_model_diff ,aes(x = diff_from_control,fill = Treatment,color 
 ggsave(file.path("figures","bayesian_results","meanGCC_bayes.jpg"),plot_to_export,
        width = 180,height = 140,unit= "mm",dpi = 300)
 
+## use this to report your number in the result section
+mean_effect
 
+summary_full_model

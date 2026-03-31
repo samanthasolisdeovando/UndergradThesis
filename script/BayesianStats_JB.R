@@ -9,7 +9,7 @@
 
 #this data does not meet the assumptions of one-way ANOVA test, therefore alternative = Kruskal-Wallis
 
-thesis_data <- read.csv("shifted_dataset.csv")
+thesis_data <- read.csv(file.path("data","shifted_dataset.csv"))
 
 library(tidyverse)
 library(ggpubr)
@@ -176,20 +176,20 @@ ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment
         panel.border = element_rect(color = "grey", fill = NA, size = 1))
 
 #Kruskal-Test (rstatix)
-res.kruskal <- thesis_data %>% kruskal_test(Cover ~ Season)
-res.kruskal
-
-#Effect size
-#interpretation:
-# 0.01- < 0.06 (small effect)
-# 0.06 - < 0.14 (moderate effect)
-# >= 0.14 (large effect)
-thesis_data %>% kruskal_effsize(Cover ~ Season)
-
-#Dunn's Test - pairwise comparisons
-pwc <- thesis_data %>% 
-  dunn_test(CO2flux ~ Season, p.adjust.method = "bonferroni") 
-pwc
+# res.kruskal <- thesis_data %>% kruskal_test(Cover ~ Season)
+# res.kruskal
+# 
+# #Effect size
+# #interpretation:
+# # 0.01- < 0.06 (small effect)
+# # 0.06 - < 0.14 (moderate effect)
+# # >= 0.14 (large effect)
+# thesis_data %>% kruskal_effsize(Cover ~ Season)
+# 
+# #Dunn's Test - pairwise comparisons
+# pwc <- thesis_data %>% 
+#   dunn_test(CO2flux ~ Season, p.adjust.method = "bonferroni") 
+# pwc
 
 #### bayesian version ####
 #### Written by Jeremy Borderieux ####
@@ -226,6 +226,7 @@ model_co2 <- brm(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # mode
                  warmup = 2000, # number of discarded computation 
                  cores = 3, # this is to speed up the co;putation
                  prior = my_prior_co2,
+                 file = file.path("model","co2flux"), # if you make a change to the model, delete the file and fit again 
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
@@ -266,6 +267,8 @@ model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = i
                  warmup = 2000, # number of discarded computation 
                  cores = 3, # this is to speed up the computation
                  prior = my_prior_gcc,
+                 file = file.path("model","meangcc"), # if you make a change to the model, delete the file and fit again 
+                 
                  chains = 3,# this is the number of chain, independent model
                  init = 0) # makes the computation more stable 
 
