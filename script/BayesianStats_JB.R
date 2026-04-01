@@ -497,26 +497,26 @@ ggplot(thesis_data,aes( x= meanGCC
 
 ## defining my prior knowlkedge
 # intercept, baseline flux of the control plot of a given season
-my_prior_co2 <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
+my_prior_co2_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
 # treatmemt effect within a season
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
 
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 # prior of the slopes of the continuous variables
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "Cover_scale"))
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "MeanSoilMoisture_scale"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "Cover_scale"))
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "MeanSoilMoisture_scale"))
 
 # center scaling the predictor variable
 thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
@@ -532,7 +532,7 @@ model_co2_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotI
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
                  cores = 3, # this is to speed up the co;putation
-                 prior = my_prior_co2,
+                 prior = my_prior_co2_linear,
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
