@@ -296,9 +296,9 @@ my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = 
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
 
-my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
-my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
-my_prior_cover <- c(my_prior_co2,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 
 
@@ -309,7 +309,9 @@ model_cover <- brm(Cover | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # mode
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
                  cores = 3, # this is to speed up the co;putation
-                 prior = my_prior_co2,
+                 prior = my_prior_cover,
+                 file = file.path("model","cover"), # if you make a change to the model, delete the file and fit again 
+                 
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
@@ -350,6 +352,8 @@ model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID)
                  warmup = 2000, # number of discarded computation 
                  cores = 3, # this is to speed up the co;putation
                  prior = my_prior_height,
+                 file = file.path("model","canopyheight"), # if you make a change to the model, delete the file and fit again 
+                 
                  chains = 3,# this is the nu;ber of chain, independant model
                  init = 0) # makes the computation more stable 
 
@@ -366,7 +370,7 @@ library(brms)
 # intercept, baseline Soil pH of the control plot of a given season
 my_prior_pH <- set_prior("normal(7,1)",class = "b",coef = "SeasonAutumncold")
 my_prior_pH <- c(my_prior_pH,set_prior("normal(7,1)",class = "b",coef = "SeasonAutumnwarm"))
-my_prior_pH <- c(my_prior_pH,set_prior("normal(7,1)",class = "b",coef = "SeasonHeatwave"))
+my_prior_pH <- c(my_prior_pH,set_prior("normal(7,0.3)",class = "b",coef = "SeasonHeatwave"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(7.4,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
@@ -390,6 +394,7 @@ model_pH <- brm(MEANpH ~ 0+Season*Treatment + (1|PotID), # model formula * = int
                     warmup = 2000, # number of discarded computation 
                     cores = 3, # this is to speed up the co;putation
                     prior = my_prior_pH,
+                file = file.path("model","SoilpH"), # if you make a change to the model, delete the file and fit again 
                     chains = 3,# this is the number of chain, independent model
                     init = 0) # makes the computation more stable 
 
@@ -430,6 +435,7 @@ model_moisture <- brm(MeanSoilMoisture | trunc(ub = 10)~ 0+Season*Treatment + (1
                 warmup = 2000, # number of discarded computation 
                 cores = 3, # this is to speed up the co;putation
                 prior = my_prior_moisture,
+                file = file.path("model","moisture"), # if you make a change to the model, delete the file and fit again 
                 chains = 3,# this is the number of chain, independent model
                 init = 0) # makes the computation more stable 
 
@@ -510,13 +516,16 @@ my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "Seaso
 # prior of the slopes of the continuous variables
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "Cover_scale"))
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "MeanSoilMoisture_scale"))
 
 # center scaling the predictor variable
 thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
 thesis_data$Cover_scale <- scale(thesis_data$Cover,scale = F)
+thesis_data$MeanSoilMoisture_scale <- scale(thesis_data$MeanSoilMoisture,scale = F)
 
 
-model_co2_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + Cover_scale + averageTemp_scale,
+model_co2_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
+                               averageTemp_scale+MeanSoilMoisture_scale*Treatment ,
                         sigma ~ Season), # model formula * = interqcti, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
@@ -533,7 +542,7 @@ summary(model_co2_linear,prob = 0.9)
 pp_check(model_co2_linear, type = "dens_overlay_grouped", group = "Season")
 
 
+plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale",re_formula = NA,prob = 0.9))[[1]]+theme_classic()
+plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]+theme_classic()
 
 
-
-›sigma ~ 0+Season)

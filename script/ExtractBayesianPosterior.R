@@ -14,7 +14,7 @@ library(dplyr)
 dataframe_treatment <- data.table(expand.grid(Treatment = unique(thesis_data$Treatment),Season=unique(thesis_data$Season)))
 
 # current model
-model_current <- model_gcc ## change here the model to run this script
+model_current <- model_moisture ## change here the model to run this script
 
 # the fitted function can be used to retrieved the predicted mean and CI of the mean of each treatment:season
 # replace with the desired model
@@ -59,13 +59,13 @@ summary_full_model[,signif := case_when(
   prob_to_be_higher  > 0.999 ~ "***",
   prob_to_be_higher  > 0.99 ~ "**",
   prob_to_be_higher  > 0.95 ~ "*",
-  prob_to_be_higher  > 0.9 ~ ".",
+  prob_to_be_higher  > 0.9 ~ "+",
   .default =NA)]
 summary_full_model[,signif_smaller := case_when(
   prob_to_be_smaller  > 0.999 ~ "***",
   prob_to_be_smaller  > 0.99 ~ "**",
   prob_to_be_smaller  > 0.95 ~ "*",
-  prob_to_be_smaller  > 0.9 ~ ".",
+  prob_to_be_smaller  > 0.9 ~ "+",
   .default = NA)]
 
 ## as expected, the difference of Heatwave during Heatwave is significant in the CO2 model
@@ -84,16 +84,17 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
   geom_violin(alpha = 0.75,show.legend = T,trim = T)+ ## full prediction
   geom_pointrange(data = mean_effect,aes( y = Estimate, ymin = Q5,ymax = Q95),
                   color = "white",size = 0.55,lwd = 1 ,show.legend = F,lineend = "round")+ ## mean prediction
-  geom_point(data = thesis_data,aes ( y = meanGCC),## change here which variable you are predicting
+  geom_point(data = thesis_data,aes ( y = MeanSoilMoisture),## change here which variable you are predicting
              color = "grey20",alpha = 1,size = 0.65,position = position_jitter(height = 0,width = 0.2),show.legend = F)+  ## real data
   geom_text(aes(y = max (full_model$value), ## change here too
                 label = signif),summary_full_model,color = "grey5",size = 9)+
-  
+ geom_text(aes(y = max (full_model$value), ## change here too
+                  label = signif_smaller),summary_full_model,color = "grey5",size = 9)+
   facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
   theme_classic()+
   theme(legend.position = "bottom")+
   labs( x = NULL, 
-        y = "Mean GCC")+ ## fitting name here
+        y = "cover")+ ## fitting name here
   scale_x_discrete(label = c("Ctrl","Heat","Ext"))+ ## shortening the name, keep it or not
   scale_fill_manual(values =color_vector)+
   scale_color_manual(values = color_vector))
@@ -110,8 +111,11 @@ ggplot(data = full_model_diff ,aes(x = diff_from_control,fill = Treatment,color 
   labs(y = "Density distribution", x = "Posterior distribution of the difference of XXX \n between the control and treatment pots")
 
 ## saving the plot in publ format
-ggsave(file.path("figures","bayesian_results","meanGCC_bayes.jpg"),plot_to_export,
-       width = 180,height = 140,unit= "mm",dpi = 300)
+ggsave(file.path("figures","bayesian_results","pH_bayes.jpg"),plot_to_export,
+       width = 180,height = 140,unit= "mm",dpi = 400)
+
+ggsave(file.path("figures","bayesian_results","meanGCC_bayes.pdf"),plot_to_export,
+       width = 180,height = 140,unit= "mm",dpi = 400)
 
 ## use this to report your number in the result section
 mean_effect
