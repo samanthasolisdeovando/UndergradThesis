@@ -477,6 +477,7 @@ model_evapotranspiration <- brm(bf(EvapotranspirationRate ~ 0+Season*Treatment +
                       warmup = 2000, # number of discarded computation 
                       cores = 3, # this is to speed up the co;putation
                       prior = my_prior_evapotranspiration,
+                      file = file.path("model","evapotranspiration"), # if you make a change to the model, delete the file and fit again 
                       chains = 3,# this is the number of chain, independent model
                       init = 0) # makes the computation more stable 
 
@@ -515,12 +516,12 @@ my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b"
 
 # prior of the slopes of the continuous variables
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
-my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "Cover_scale"))
+#my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "Cover_scale"))
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "MeanSoilMoisture_scale"))
 
 # center scaling the predictor variable
 thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
-thesis_data$Cover_scale <- scale(thesis_data$Cover,scale = F)
+#thesis_data$Cover_scale <- scale(thesis_data$Cover,scale = F)
 thesis_data$MeanSoilMoisture_scale <- scale(thesis_data$MeanSoilMoisture,scale = F)
 
 
@@ -542,7 +543,15 @@ summary(model_co2_linear,prob = 0.9)
 pp_check(model_co2_linear, type = "dens_overlay_grouped", group = "Season")
 
 
-plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale",re_formula = NA,prob = 0.9))[[1]]+theme_classic()
-plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]+theme_classic()
+plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale",re_formula = NA,prob = 0.9))[[1]]+
+  labs(
+    x = "Soil Moisture Scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()
+plot(conditional_effects(model_co2_linear,effects = "MeanSoilMoisture_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]+
+  labs(
+    x = "Soil Moisture Scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()
 
 
