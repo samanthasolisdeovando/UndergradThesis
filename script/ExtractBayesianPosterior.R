@@ -1,3 +1,6 @@
+######## Written by Jeremy Borderieux ########
+##### Edited by Samantha Solis de Ovando #####
+
 #### Packages ####
 library(brms)
 library(data.table)
@@ -14,7 +17,7 @@ library(dplyr)
 dataframe_treatment <- data.table(expand.grid(Treatment = unique(thesis_data$Treatment),Season=unique(thesis_data$Season)))
 
 # current model
-model_current <- model_cover ## change here the model to run this script
+model_current <- model_gcc ## change here the model to run this script
 
 # the fitted function can be used to retrieved the predicted mean and CI of the mean of each treatment:season
 # replace with the desired model
@@ -84,39 +87,54 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
   geom_violin(alpha = 0.75,show.legend = T,trim = T)+ ## full prediction
   geom_pointrange(data = mean_effect,aes( y = Estimate, ymin = Q5,ymax = Q95),
                   color = "white",size = 0.55,lwd = 1 ,show.legend = F,lineend = "round")+ ## mean prediction
-  geom_point(data = thesis_data,aes ( y = Cover),## change here which variable you are predicting
+  geom_point(data = thesis_data,aes ( y = meanGCC),## change here which variable you are predicting
              color = "grey20",alpha = 1,size = 0.65,position = position_jitter(height = 0,width = 0.2),show.legend = F)+  ## real data
   geom_text(aes(y = max (full_model$value), ## change here too
                 label = signif),summary_full_model,color = "grey5",size = 9)+
  geom_text(aes(y = max (full_model$value), ## change here too
                   label = signif_smaller),summary_full_model,color = "grey5",size = 9)+
-  facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
+  facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold'), labels = c("Summer", "Late summer", "Autumn warm", "Autumn cold")))+
   theme_classic()+
   theme(legend.position = "bottom")+
   labs( x = NULL, 
-        y = "Cover (0-1)")+ ## fitting name here
+        y = "Greenness Chromatic Coordinate")+ ## fitting name here
   scale_x_discrete(label = c("Ctrl","Heat","Ext"))+ ## shortening the name, keep it or not
   scale_fill_manual(values =color_vector)+
   scale_color_manual(values = color_vector))
 
 # plot 2: displayed the distribution of the posterior of the difference with the control
-ggplot(data = full_model_diff ,aes(x = diff_from_control,fill = Treatment,color = Treatment ))+
+(plot_to_export2 <- ggplot(data = full_model_diff ,aes(x = diff_from_control,fill = Treatment,color = Treatment ))+
   geom_density(alpha = 0.75,trim = T)+
   facet_grid(Treatment ~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
-  facet_grid(factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')) ~ Treatment)+
+  facet_grid(factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold'), labels = c("Summer", "Late summer", "Autumn warm", "Autumn cold")) ~ Treatment)+
   geom_vline(xintercept = 0,lty = 2)+
   theme_classic()+
   scale_fill_manual(values = color_vector)+
   scale_color_manual(values = color_vector)+
-  labs(y = "Density distribution", x = "Posterior distribution of the difference of XXX \n between the control and treatment pots")
+  labs(y = "Density distribution", x = "Posterior distribution of the difference of GCC in between the control and treatment pots"))
 
-## saving the plot in publ format
+## save plot1 in publ format for paper pdf
+ggsave(file.path("figures","bayesian_results","GCC_PaperFormat.pdf"),plot_to_export,
+       width = 180,height = 130,unit= "mm",dpi = 400)
+## save the plot in pbl format for paper jpg
+ggsave(file.path("figures","bayesian_results","GCC_PaperFormat.jpg"),plot_to_export,
+       width = 180,height = 130,unit= "mm",dpi = 400)
+
+## save plot 2 in publ format for paper
+ggsave(file.path("figures","bayesian_results","GCC_PDist_PaperFormat_.pdf"),plot_to_export2,
+       width = 180,height = 130,unit= "mm",dpi = 400)
+## save the plot in pbl format for paper jpg
+ggsave(file.path("figures","bayesian_results","GCC_PDist_PaperFormat.jpg"),plot_to_export2,
+       width = 180,height = 130,unit= "mm",dpi = 400)
+
+## saving plot 1 in publ format (for presentation)
 ggsave(file.path("figures","bayesian_results","cover_wide_bayes.jpg"),plot_to_export,
        width = 180,height = 100,unit= "mm",dpi = 400)
 
 ggsave(file.path("figures","bayesian_results","meanGCC_bayes.pdf"),plot_to_export,
        width = 180,height = 140,unit= "mm",dpi = 400)
 
+#### model summaries (for reporting / stats table) ####
 ## use this to report your number in the result section
 mean_effect
 
