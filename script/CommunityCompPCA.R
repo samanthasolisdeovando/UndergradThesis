@@ -1,6 +1,5 @@
 #Written by Samantha Solis de Ovando
 # inspired by tutorial: https://rpubs.com/brouwern/veganpca
-###########load data##########
 library(readr)
 library(dplyr)
 library("ggpubr")
