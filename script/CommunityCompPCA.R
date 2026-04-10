@@ -48,12 +48,19 @@ ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
 
 species_scores <- as.data.frame(scores(pca_model, display = "species"))
 species_scores$FunctionalGroup <- rownames(species_scores)
+species_scores$FunctionalGroup <- dplyr::recode(
+  species_scores$FunctionalGroup,
+  "shrub.cover" = "Shrubs",
+  "graminoid.cover" = "Graminoids",
+  "bryophyte.cover" = "Bryophytes",
+  "forb.cover" = "Forbs"
+)
 
 ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
   geom_point(size = 3, alpha = 0.7) +
   stat_ellipse(aes(group = Treatment), linewidth = 1) +
   geom_segment(data = species_scores,aes(x = 0, y = 0, xend = PC1, yend = PC2),arrow = arrow(length = unit(0.02, "mm")), color = "black") +
-  geom_text(data = species_scores,aes(x = PC1, y = PC2, label = FunctionalGroup), color = "black") +
+  geom_text(data = species_scores,aes(x = PC1, y = PC2, label = FunctionalGroup), color = "black", size = 3) +
   theme_classic()+
   scale_color_manual(values = c("Control" = "#1F77B4",
                                 "Heatwave" = "#FF7F0E",
