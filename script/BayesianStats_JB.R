@@ -496,6 +496,7 @@ ggplot(thesis_data,aes( x= meanGCC
   scale_color_viridis_d()
 
 ##### linear mixed-effects models (LME) ####
+library(brms)
 #### CO2 ~ GCC LME ####
 ## defining my prior knowlkedge
 # intercept, baseline flux of the control plot of a given season
@@ -552,17 +553,25 @@ plot(conditional_effects(model_co2_linear,effects = "meanGCC_scale",re_formula =
     x = "GCC Scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
-plot(conditional_effects(model_co2_linear,effects = "averageTemp_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]+
-  scale_fill_manual(values = c("Control"= "#1F77B4",
-                               "Heatwave"= "#FF7F0E",
-                               "Extended"= "#2CA02C"))+
+
+##plot co2~gcc, by treatment
+pgcclin <- plot(conditional_effects(model_co2_linear,effects = "meanGCC_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
+pgcclin$layers[[1]]$aes_params$alpha <- 0.15
+pgcclin +
+  scale_fill_manual(values = c("Control"= alpha("#1F77B4", 0.01),
+                               "Heatwave"= alpha("#FF7F0E", 0.01),
+                               "Extended"= alpha("#2CA02C", 0.01)
+  ))+
   scale_color_manual(values = c("Control"= "#1F77B4",
                                 "Heatwave"= "#FF7F0E",
                                 "Extended"= "#2CA02C"))+
   labs(
-    x = "GCC Scale",
+    x = "GCC scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
-  theme_classic()
+  theme_classic()+
+  theme(legend.position = "")
+
+fixef(model_co2_linear)
 
 #### CO2 ~ Cover linear ####
 ## defining my prior knowlkedge
@@ -590,8 +599,6 @@ my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)"
 # center scaling the predictor variable
 thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
 thesis_data$Cover_scale <- scale(thesis_data$Cover,scale = F)
-#thesis_data$MeanSoilMoisture_scale <- scale(thesis_data$MeanSoilMoisture,scale = F)
-#thesis_data$meanGCC_scale <- scale(thesis_data$meanGCC,scale = F)
 
 
 model_co2_cover_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
@@ -618,16 +625,165 @@ plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale",re_formu
     x = "Cover Scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
-plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]+
-  scale_fill_manual(values = c("Control"= "#1F77B4",
-                               "Heatwave"= "#FF7F0E",
-                               "Extended"= "#2CA02C"))+
+
+#co2~cover, by treatment
+pcoverlin <- plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
+pcoverlin$layers[[1]]$aes_params$alpha <- 0.15
+pcoverlin +
+  scale_fill_manual(values = c("Control"= alpha("#1F77B4", 0.01),
+                               "Heatwave"= alpha("#FF7F0E", 0.01),
+                               "Extended"= alpha("#2CA02C", 0.01)
+                               ))+
   scale_color_manual(values = c("Control"= "#1F77B4",
                                 "Heatwave"= "#FF7F0E",
                                 "Extended"= "#2CA02C"))+
   labs(
     x = "Cover scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()+
+  theme(legend.position = "")
+
+fixef(model_co2_cover_linear)
+
+#### CO2 ~ SOIL MOISTURE LME ####
+## defining my prior knowlkedge
+thesis_data$MeanSoilMoisture <- scales::squish(thesis_data$MeanSoilMoisture,range = c(0,10))
+# intercept, baseline flux of the control plot of a given season
+my_prior_co2_moisture_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
+# treatment effect of autumn cold
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
+# treatmemt effect within a season
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+
+# prior of the slopes of the continuous variables
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "MeanSoilMoisture_scale"))
+
+# center scaling the predictor variable
+thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
+thesis_data$MeanSoilMoisture_scale <- scale(thesis_data$MeanSoilMoisture,scale = F)
+
+model_co2_moisture_linear <- brm(bf(CO2flux ~ 0+Season*Treatment + (1|PotID) + 
+                             averageTemp_scale+MeanSoilMoisture_scale*Treatment ,
+                           sigma ~ Season), # model formula * = interqcti, no negative values
+                        data = thesis_data, # data
+                        family = gaussian(), # the data looks normally distributed
+                        iter = 6000, # number of computation, the more the better
+                        warmup = 2000, # number of discarded computation 
+                        cores = 3, # this is to speed up the co;putation
+                        prior = my_prior_co2_moisture_linear,
+                        file = file.path("model","co2moisturelinear"), # if you make a change to the model, delete the file and fit again 
+                        chains = 3,# this is the nu;ber of chain, independant model
+                        init = 0) # makes the computation more stable 
+
+plot(model_co2_moisture_linear) # assess model convergence, with fuzzy caterpillar
+pp_check(model_co2_moisture_linear)
+summary(model_co2_moisture_linear,prob = 0.9)
+pp_check(model_co2_moisture_linear, type = "dens_overlay_grouped", group = "Season")
+
+
+plot(conditional_effects(model_co2_moisture_linear,effects = "MeanSoilMoisture_scale",re_formula = NA,prob = 0.9))[[1]]+
+  labs(
+    x = "Moisture Scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
 
+##plot co2~moisture, by treatment
+pmoistlin <- plot(conditional_effects(model_co2_moisture_linear,effects = "MeanSoilMoisture_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
+pmoistlin$layers[[1]]$aes_params$alpha <- 0.15
+pmoistlin +
+  scale_fill_manual(values = c("Control"= alpha("#1F77B4", 0.01),
+                               "Heatwave"= alpha("#FF7F0E", 0.01),
+                               "Extended"= alpha("#2CA02C", 0.01)
+  ))+
+  scale_color_manual(values = c("Control"= "#1F77B4",
+                                "Heatwave"= "#FF7F0E",
+                                "Extended"= "#2CA02C"))+
+  labs(
+    x = "Moisture scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()+
+  theme(legend.position = "")
 
+fixef(model_co2_moisture_linear)
+
+#### CO2 ~ temp LME ####
+library(brms)
+
+## defining my prior knowlkedge
+# intercept, baseline flux of the control plot of a given season
+my_prior_co2_temp_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
+# treatment effect of autumn cold
+my_prior_co2_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
+# treatmemt effect within a season
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
+
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentExtended"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
+
+# prior of the slopes of the continuous variables
+my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0.1,0.1)",class = "b",coef = "averageTemp_scale"))
+
+# center scaling the predictor variable
+thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
+
+model_co2_temp_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
+                             averageTemp_scale*Treatment ,
+                           sigma ~ Season), # model formula * = interqcti, no negative values
+                        data = thesis_data, # data
+                        family = gaussian(), # the data looks normally distributed
+                        iter = 6000, # number of computation, the more the better
+                        warmup = 2000, # number of discarded computation 
+                        cores = 3, # this is to speed up the co;putation
+                        prior = my_prior_co2_temp_linear,
+                        file = file.path("model","co2templinear"), # if you make a change to the model, delete the file and fit again 
+                        chains = 3,# this is the nu;ber of chain, independant model
+                        init = 0) # makes the computation more stable 
+
+plot(model_co2_temp_linear) # assess model convergence, with fuzzy caterpillar
+pp_check(model_co2_temp_linear)
+summary(model_co2_temp_linear,prob = 0.9)
+pp_check(model_co2_temp_linear, type = "dens_overlay_grouped", group = "Season")
+
+
+plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale",re_formula = NA,prob = 0.9))[[1]]+
+  labs(
+    x = "Temperature Scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()
+
+##plot co2~gcc, by treatment
+ptemplin <- plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
+ptemplin$layers[[1]]$aes_params$alpha <- 0.15
+ptemplin +
+  scale_fill_manual(values = c("Control"= alpha("#1F77B4", 0.01),
+                               "Heatwave"= alpha("#FF7F0E", 0.01),
+                               "Extended"= alpha("#2CA02C", 0.01)
+  ))+
+  scale_color_manual(values = c("Control"= "#1F77B4",
+                                "Heatwave"= "#FF7F0E",
+                                "Extended"= "#2CA02C"))+
+  labs(
+    x = "GCC scale",
+    y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
+  theme_classic()+
+  theme(legend.position = "")
+
+fixef(model_co2_temp_linear)
