@@ -17,7 +17,7 @@ library(dplyr)
 dataframe_treatment <- data.table(expand.grid(Treatment = unique(thesis_data$Treatment),Season=unique(thesis_data$Season)))
 
 # current model
-model_current <- model_co2 ## change here the model to run this script
+model_current <- model_cover ## change here the model to run this script
 
 # the fitted function can be used to retrieved the predicted mean and CI of the mean of each treatment:season
 # replace with the desired model
@@ -87,7 +87,7 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
   geom_violin(alpha = 0.75,show.legend = T,trim = T)+ ## full prediction
   geom_pointrange(data = mean_effect,aes( y = Estimate, ymin = Q5,ymax = Q95),
                   color = "white",size = 0.55,lwd = 1 ,show.legend = F,lineend = "round")+ ## mean prediction
-  geom_point(data = thesis_data,aes ( y = CO2flux),## change here which variable you are predicting
+  geom_point(data = thesis_data,aes ( y = Cover),## change here which variable you are predicting
              color = "grey20",alpha = 1,size = 0.65,position = position_jitter(height = 0,width = 0.2),show.legend = F)+  ## real data
   geom_text(aes(y = max (full_model$value), ## change here too
                 label = signif),summary_full_model,color = "grey5",size = 9)+
@@ -95,10 +95,13 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
                   label = signif_smaller),summary_full_model,color = "grey5",size = 9)+
   facet_grid(~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold'), labels = c("Summer", "Late summer", "Autumn warm", "Autumn cold")))+
   theme_classic()+
-  theme(legend.position = "bottom")+
+    theme_classic()+
+  theme(legend.position = "bottom",
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 20))+
   labs( x = NULL, 
-        y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+ ## fitting name here
-  scale_x_discrete(label = c("Ctrl","Heat","Ext"))+ ## shortening the name, keep it or not
+        y = "Cover (0-1)")+ ## fitting name here
+  scale_x_discrete(label = c("Ext","Heat","Ctrl"))+ ## shortening the name, keep it or not
   scale_fill_manual(values =color_vector)+
   scale_color_manual(values = color_vector))
 
@@ -117,8 +120,8 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
 ggsave(file.path("figures","bayesian_results","CO2_PaperFormat.pdf"),plot_to_export,
        width = 180,height = 130,unit= "mm",dpi = 400)
 ## save the plot in pbl format for paper jpg
-ggsave(file.path("figures","bayesian_results","CO2_PaperFormat.jpg"),plot_to_export,
-       width = 180,height = 130,unit= "mm",dpi = 400)
+ggsave(file.path("figures","bayesian_results","CO2_PaperFormatBigText.jpg"),plot_to_export,
+       width = 120,height = 130,unit= "mm",dpi = 400)
 
 ## save plot 2 in publ format for paper
 ggsave(file.path("figures","bayesian_results","CO2_PDist_PaperFormat_.pdf"),plot_to_export2,
