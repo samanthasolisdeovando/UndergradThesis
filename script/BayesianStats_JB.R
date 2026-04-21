@@ -257,8 +257,6 @@ my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "Se
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-#### should i add residuals or random effects priors??
-
 
 model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values--trunc(lb = 0)
                  data = thesis_data, # data
@@ -408,7 +406,7 @@ summary(model_pH)
 library(brms)
 
 ## defining my prior knowlkedge
-# intercept, baseline Soil pH of the control plot of a given season
+# intercept, baseline soil moisture of the control plot of a given season
 my_prior_moisture <- set_prior("normal(9,1.5)",class = "b",coef = "SeasonAutumncold")
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(9,1.5)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(8.5,2)",class = "b",coef = "SeasonHeatwave"))
@@ -569,9 +567,15 @@ pgcclin +
     x = "GCC scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()+
-  theme(legend.position = "")
+  theme(legend.position = "",
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 26))
 
 fixef(model_co2_linear)
+
+range(thesis_data$meanGCC)
+gcc_range <- max(thesis_data$meanGCC) - min(thesis_data$meanGCC)
+gcc_range
 
 #### CO2 ~ Cover linear ####
 ## defining my prior knowlkedge
@@ -641,7 +645,9 @@ pcoverlin +
     x = "Cover scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()+
-  theme(legend.position = "")
+  theme(legend.position = "",
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 26))
 
 fixef(model_co2_cover_linear)
 
@@ -713,7 +719,9 @@ pmoistlin +
     x = "Moisture scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()+
-  theme(legend.position = "")
+  theme(legend.position = "",
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 26))
 
 fixef(model_co2_moisture_linear)
 
@@ -769,7 +777,7 @@ plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale",re_
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
 
-##plot co2~gcc, by treatment
+##plot co2~temp, by treatment
 ptemplin <- plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
 ptemplin$layers[[1]]$aes_params$alpha <- 0.15
 ptemplin +
@@ -781,9 +789,11 @@ ptemplin +
                                 "Heatwave"= "#FF7F0E",
                                 "Extended"= "#2CA02C"))+
   labs(
-    x = "GCC scale",
+    x = "Temperature scale",
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()+
-  theme(legend.position = "")
+  theme(legend.position = "",
+        axis.title.x = element_text(size = 26),
+        axis.title.y = element_text(size = 26))
 
 fixef(model_co2_temp_linear)
