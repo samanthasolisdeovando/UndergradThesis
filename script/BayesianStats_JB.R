@@ -191,7 +191,7 @@ ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment
 #   dunn_test(CO2flux ~ Season, p.adjust.method = "bonferroni") 
 # pwc
 
-#### bayesian version ####
+#### Bayesian version ####
 #### Written by Jeremy Borderieux ####
 #### Edited by Samantha Solis de Ovando ####
 
@@ -199,16 +199,16 @@ ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline flux of the control plot of a given season
 my_prior_co2 <- set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumncold")
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonHeatwave"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(1.5,1.5)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -219,18 +219,18 @@ my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "Seaso
 
 ####### Model ######
 
-model_co2 <- brm(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+model_co2 <- brm(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
-                 cores = 3, # this is to speed up the co;putation
+                 cores = 3, # this is to speed up the computation
                  prior = my_prior_co2,
                  file = file.path("model","co2flux"), # if you make a change to the model, delete the file and fit again 
-                 chains = 3,# this is the nu;ber of chain, independant model
+                 chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
-plot(model_co2) # assess model convergence, with fuzzy caterpillar
+plot(model_co2) # assess model convergence
 pp_check(model_co2)
 summary(model_co2,prob = 0.9)
 pp_check(model_co2, type = "dens_overlay_grouped", group = "Season")
@@ -239,16 +239,16 @@ pp_check(model_co2, type = "dens_overlay_grouped", group = "Season")
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline GCC of the control plot of a given season
 my_prior_gcc <- set_prior("normal(0.33,0.04)",class = "b",coef = "SeasonAutumncold") ### first number 1.5 (first) is mean, 1.5 (second) is stdev
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0.33,0.04)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0.32,0.04)",class = "b",coef = "SeasonHeatwave"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0.315,0.04)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season (except autumn cold, autumn cold was used as a control!)
+# treatment effect within a season (except autumn cold, autumn cold was used as a control!)
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -258,7 +258,7 @@ my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "Se
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 
-model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values--trunc(lb = 0)
+model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values--trunc(lb = 0)
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
                  iter = 6000, # number of computation, the more the better
@@ -267,29 +267,29 @@ model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = i
                  prior = my_prior_gcc,
                  file = file.path("model","meangcc"), # if you make a change to the model, delete the file and fit again 
                  
-                 chains = 3,# this is the number of chain, independent model
+                 chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
-plot(model_gcc) # assess model convergence, with fuzzy caterpillar
+plot(model_gcc) # assess model convergence
 pp_check(model_gcc)
 pp_check(model_gcc, type = "dens_overlay_grouped", group = "Season")
 
 summary(model_gcc,prob = 0.9)
 
-### bayesian Cover ###
+### Bayesian Cover ###
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline cover of the control plot of a given season
 my_prior_cover <- set_prior("normal(0.6,0.3)",class = "b",coef = "SeasonAutumncold")
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0.6,0.3)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0.4,0.3)",class = "b",coef = "SeasonHeatwave"))
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0.2,0.3)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -300,20 +300,19 @@ my_prior_cover <- c(my_prior_cover,set_prior("normal(0,0.4)",class = "b",coef = 
 
 
 
-
-model_cover <- brm(Cover | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+model_cover <- brm(Cover | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
-                 cores = 3, # this is to speed up the co;putation
+                 cores = 3, # this is to speed up the computation
                  prior = my_prior_cover,
                  file = file.path("model","cover"), # if you make a change to the model, delete the file and fit again 
                  
-                 chains = 3,# this is the nu;ber of chain, independant model
+                 chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
-plot(model_cover) # assess model convergence, with fuzzy caterpillar
+plot(model_cover) # assess model convergence
 pp_check(model_cover)
 pp_check(model_cover, type = "dens_overlay_grouped", group = "Season")
 summary(model_cover)
@@ -322,16 +321,16 @@ summary(model_cover)
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline canopy height of the control plot of a given season
 my_prior_height <- set_prior("normal(10,15)",class = "b",coef = "SeasonAutumncold")
 my_prior_height <- c(my_prior_height,set_prior("normal(10,15)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_height <- c(my_prior_height,set_prior("normal(10,15)",class = "b",coef = "SeasonHeatwave"))
 my_prior_height <- c(my_prior_height,set_prior("normal(10,15)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -342,17 +341,16 @@ my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef =
 
 
 
-
-model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
-                 cores = 3, # this is to speed up the co;putation
+                 cores = 3, # this is to speed up the computation
                  prior = my_prior_height,
                  file = file.path("model","canopyheight"), # if you make a change to the model, delete the file and fit again 
                  
-                 chains = 3,# this is the nu;ber of chain, independant model
+                 chains = 3,# this is the number of chain, independent model
                  init = 0) # makes the computation more stable 
 
 plot(model_height) # assess model convergence, with fuzzy caterpillar
@@ -364,16 +362,16 @@ summary(model_height,prob = 0.9)
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline Soil pH of the control plot of a given season
 my_prior_pH <- set_prior("normal(7,1)",class = "b",coef = "SeasonAutumncold")
 my_prior_pH <- c(my_prior_pH,set_prior("normal(7,1)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(7,0.3)",class = "b",coef = "SeasonHeatwave"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(7.4,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -385,18 +383,18 @@ my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonS
 
 
 
-model_pH <- brm(MEANpH ~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+model_pH <- brm(MEANpH ~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                     data = thesis_data, # data
                     family = gaussian(), # the data looks normally distributed
                     iter = 6000, # number of computation, the more the better
                     warmup = 2000, # number of discarded computation 
-                    cores = 3, # this is to speed up the co;putation
+                    cores = 3, # this is to speed up the computation
                     prior = my_prior_pH,
                 file = file.path("model","SoilpH"), # if you make a change to the model, delete the file and fit again 
-                    chains = 3,# this is the number of chain, independent model
+                    chains = 3,# this is the number of chains, independent model
                     init = 0) # makes the computation more stable 
 
-plot(model_pH) # assess model convergence, with fuzzy caterpillar
+plot(model_pH) # assess model convergence
 pp_check(model_pH)
 pp_check(model_pH, type = "dens_overlay_grouped", group = "Season")
 summary(model_pH)
@@ -405,14 +403,14 @@ summary(model_pH)
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline soil moisture of the control plot of a given season
 my_prior_moisture <- set_prior("normal(9,1.5)",class = "b",coef = "SeasonAutumncold")
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(9,1.5)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(8.5,2)",class = "b",coef = "SeasonHeatwave"))
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(6,2)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,3)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,3)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
 # treatmemt effect within a season
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
@@ -424,20 +422,20 @@ my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,1)",class = "b",coe
 my_prior_moisture <- c(my_prior_moisture,set_prior("normal(0,2.5)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
 
-thesis_data$MeanSoilMoisture <- scales::squish(thesis_data$MeanSoilMoisture,range = c(0,10))
+thesis_data$MeanSoilMoisture <- scales::squish(thesis_data$MeanSoilMoisture,range = c(0,10)) #keep range to max 10
 
-model_moisture <- brm(MeanSoilMoisture | trunc(ub = 10)~ 0+Season*Treatment + (1|PotID), # model formula * = interqcti, no negative values
+model_moisture <- brm(MeanSoilMoisture | trunc(ub = 10)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                 data = thesis_data, # data
                 family = gaussian(), # the data looks normally distributed
                 iter = 6000, # number of computation, the more the better
                 warmup = 2000, # number of discarded computation 
-                cores = 3, # this is to speed up the co;putation
+                cores = 3, # this is to speed up the computation
                 prior = my_prior_moisture,
                 file = file.path("model","moisture"), # if you make a change to the model, delete the file and fit again 
-                chains = 3,# this is the number of chain, independent model
+                chains = 3,# this is the number of chains, independent model
                 init = 0) # makes the computation more stable 
 
-plot(model_moisture) # assess model convergence, with fuzzy caterpillar
+plot(model_moisture) # assess model convergence
 pp_check(model_moisture)
 pp_check(model_moisture, type = "dens_overlay_grouped", group = "Season")
 summary(model_moisture,prob = 0.9)
@@ -446,14 +444,14 @@ summary(model_moisture,prob = 0.9)
 
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline Soil pH of the control plot of a given season
 my_prior_evapotranspiration <- set_prior("normal(1,0.5)",class = "b",coef = "SeasonAutumncold")
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(1,1)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(1.7,0.5)",class = "b",coef = "SeasonHeatwave"))
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(1.7,0.5)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "TreatmentHeatwave"))
 # treatmemt effect within a season
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,1.5)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
@@ -468,18 +466,18 @@ my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0
 
 
 model_evapotranspiration <- brm(bf(EvapotranspirationRate ~ 0+Season*Treatment + (1|PotID),
-                                   sigma ~ 0+Season), # model formula * = interqcti, no negative values
+                                   sigma ~ 0+Season), # model formula * = interaction, no negative values
                       data = thesis_data, # data
                       family = gaussian(), # the data looks normally distributed
                       iter = 6000, # number of computation, the more the better
                       warmup = 2000, # number of discarded computation 
-                      cores = 3, # this is to speed up the co;putation
+                      cores = 3, # this is to speed up the computation
                       prior = my_prior_evapotranspiration,
                       file = file.path("model","evapotranspiration"), # if you make a change to the model, delete the file and fit again 
-                      chains = 3,# this is the number of chain, independent model
+                      chains = 3,# this is the number of chains, independent model
                       init = 0) # makes the computation more stable 
 
-plot(model_evapotranspiration) # assess model convergence, with fuzzy caterpillar
+plot(model_evapotranspiration) # assess model convergence
 pp_check(model_evapotranspiration)
 pp_check(model_evapotranspiration, type = "dens_overlay_grouped", group = "Season")
 summary(model_evapotranspiration)
@@ -503,9 +501,9 @@ my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -529,15 +527,15 @@ thesis_data$meanGCC_scale <- scale(thesis_data$meanGCC,scale = F)
 
 model_co2_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
                                averageTemp_scale+meanGCC_scale*Treatment ,
-                        sigma ~ Season), # model formula * = interqcti, no negative values
+                        sigma ~ Season), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
                  iter = 6000, # number of computation, the more the better
                  warmup = 2000, # number of discarded computation 
-                 cores = 3, # this is to speed up the co;putation
+                 cores = 3, # this is to speed up the computation
                  prior = my_prior_co2_linear,
                  file = file.path("model","co2GCClinear"), # if you make a change to the model, delete the file and fit again 
-                 chains = 3,# this is the nu;ber of chain, independant model
+                 chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
 plot(model_co2_linear) # assess model convergence, with fuzzy caterpillar
@@ -545,7 +543,7 @@ pp_check(model_co2_linear)
 summary(model_co2_linear,prob = 0.9)
 pp_check(model_co2_linear, type = "dens_overlay_grouped", group = "Season")
 
-
+#conditional effects
 plot(conditional_effects(model_co2_linear,effects = "meanGCC_scale",re_formula = NA,prob = 0.9))[[1]]+
   labs(
     x = "GCC Scale",
@@ -607,23 +605,23 @@ thesis_data$Cover_scale <- scale(thesis_data$Cover,scale = F)
 
 model_co2_cover_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
                              averageTemp_scale+Cover_scale*Treatment ,
-                           sigma ~ Season), # model formula * = interqcti, no negative values
+                           sigma ~ Season), # model formula * = interaction, no negative values
                         data = thesis_data, # data
                         family = gaussian(), # the data looks normally distributed
                         iter = 6000, # number of computation, the more the better
                         warmup = 2000, # number of discarded computation 
-                        cores = 3, # this is to speed up the co;putation
+                        cores = 3, # this is to speed up the computation
                         prior = my_prior_co2_cover_linear,
                         file = file.path("model","co2coverlinear"), # if you make a change to the model, delete the file and fit again 
-                        chains = 3,# this is the nu;ber of chain, independant model
+                        chains = 3,# this is the number of chains, independent model
                         init = 0) # makes the computation more stable 
 
-plot(model_co2_cover_linear) # assess model convergence, with fuzzy caterpillar
+plot(model_co2_cover_linear) # assess model convergence
 pp_check(model_co2_cover_linear)
 summary(model_co2_cover_linear,prob = 0.9)
 pp_check(model_co2_cover_linear, type = "dens_overlay_grouped", group = "Season")
 
-
+#conditional effects
 plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale",re_formula = NA,prob = 0.9))[[1]]+
   labs(
     x = "Cover Scale",
@@ -651,8 +649,8 @@ pcoverlin +
 
 fixef(model_co2_cover_linear)
 
-#### CO2 ~ SOIL MOISTURE LME ####
-## defining my prior knowlkedge
+#### CO2 ~ SOIL MOISTURE LMEM ####
+## defining my prior knowledge
 thesis_data$MeanSoilMoisture <- scales::squish(thesis_data$MeanSoilMoisture,range = c(0,10))
 # intercept, baseline flux of the control plot of a given season
 my_prior_co2_moisture_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
@@ -660,9 +658,9 @@ my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_co2_moisture_linear <- c(my_prior_co2_moisture_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -681,18 +679,18 @@ thesis_data$MeanSoilMoisture_scale <- scale(thesis_data$MeanSoilMoisture,scale =
 
 model_co2_moisture_linear <- brm(bf(CO2flux ~ 0+Season*Treatment + (1|PotID) + 
                              averageTemp_scale+MeanSoilMoisture_scale*Treatment ,
-                           sigma ~ Season), # model formula * = interqcti, no negative values
+                           sigma ~ Season), # model formula * = interaction, no negative values
                         data = thesis_data, # data
                         family = gaussian(), # the data looks normally distributed
                         iter = 6000, # number of computation, the more the better
                         warmup = 2000, # number of discarded computation 
-                        cores = 3, # this is to speed up the co;putation
+                        cores = 3, # this is to speed up the computation
                         prior = my_prior_co2_moisture_linear,
                         file = file.path("model","co2moisturelinear"), # if you make a change to the model, delete the file and fit again 
-                        chains = 3,# this is the nu;ber of chain, independant model
+                        chains = 3,# this is the number of chain, independent model
                         init = 0) # makes the computation more stable 
 
-plot(model_co2_moisture_linear) # assess model convergence, with fuzzy caterpillar
+plot(model_co2_moisture_linear) # assess model convergence
 pp_check(model_co2_moisture_linear)
 summary(model_co2_moisture_linear,prob = 0.9)
 pp_check(model_co2_moisture_linear, type = "dens_overlay_grouped", group = "Season")
@@ -728,16 +726,16 @@ fixef(model_co2_moisture_linear)
 #### CO2 ~ temp LME ####
 library(brms)
 
-## defining my prior knowlkedge
+## defining my prior knowledge
 # intercept, baseline flux of the control plot of a given season
 my_prior_co2_temp_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_co2_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_co2_temp_linear <- c(my_prior_co2_temp_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -754,15 +752,15 @@ thesis_data$averageTemp_scale <- scale(thesis_data$averageTemp,scale = F)
 
 model_co2_temp_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID) + 
                              averageTemp_scale*Treatment ,
-                           sigma ~ Season), # model formula * = interqcti, no negative values
+                           sigma ~ Season), # model formula * = interaction, no negative values
                         data = thesis_data, # data
                         family = gaussian(), # the data looks normally distributed
                         iter = 6000, # number of computation, the more the better
                         warmup = 2000, # number of discarded computation 
-                        cores = 3, # this is to speed up the co;putation
+                        cores = 3, # this is to speed up the computation
                         prior = my_prior_co2_temp_linear,
                         file = file.path("model","co2templinear"), # if you make a change to the model, delete the file and fit again 
-                        chains = 3,# this is the nu;ber of chain, independant model
+                        chains = 3,# this is the number of chain, independent model
                         init = 0) # makes the computation more stable 
 
 plot(model_co2_temp_linear) # assess model convergence, with fuzzy caterpillar
