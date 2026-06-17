@@ -1,8 +1,12 @@
+### GCC Calculation ###
+# Written by Samantha Solis de Ovando
+
+set wd() # set wd to your source location for images
 #install.packages(c("jpeg", "raster", "terra"));
 library(jpeg); library(raster); library(terra);
 
 #read JPEG Image
-img <- readJPEG("18_Top_08202025.JPG");
+img <- readJPEG("18_Top_08202025.JPG"); #insert name of JPEG here you want to calculate GCC for
 
 #Convert to a Raster Layer
 img_r <- raster(img[,,1]); # Red channel
@@ -19,4 +23,4 @@ mean_gcc <- cellStats(gcc_raster, 'mean');
 print(paste("Mean GCC:", mean_gcc));
 
 #visualize GCC map
-plot(gcc_raster, main="GCC Map");
+plot(gcc_raster, main="GCC Map")
