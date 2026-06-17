@@ -1,11 +1,11 @@
 
+
+#Kruskal-Wallis and Bayesian analysis
+#Find Bayesian analysis under kruskal-wallis
+
 ###### Kruskal Wallis & Dunn's Post-Hoc Test #####
-## Tutorial: Data Novia, https://www.datanovia.com/en/lessons/kruskal-wallis-test-in-r/
-## Edited by Samantha Solis de Ovando
-
-
-########################################################################################
-########################################################################################
+#Tutorial: Data Novia, https://www.datanovia.com/en/lessons/kruskal-wallis-test-in-r/
+#Written by Samantha Solis de Ovando
 
 #this data does not meet the assumptions of one-way ANOVA test, therefore alternative = Kruskal-Wallis
 
@@ -16,7 +16,7 @@ library(ggpubr)
 library(rstatix)
 library(ggplot2)
 
-########################## data #############################
+#reorder data
 thesis_data <- thesis_data %>%
   reorder_levels(Treatment, order = c("Control", "Heatwave", "Extended"))
 
@@ -42,16 +42,16 @@ autumn_cold_data <- thesis_data %>%
     (Season == "Autumn cold")
   )
 
-########################## stats #############################
+#### summary stats ####
 #summary stats
 autumn_warm_data %>% 
   group_by(Season) %>%
   get_summary_stats(CO2flux, type = "common")
 
-#box plot for 1 variable
-ggboxplot(autumn_cold_data, x = "Treatment", y = "CO2flux")
+#### box plot for 1 variable ####
+ggboxplot(autumn_cold_data, x = "Treatment", y = "CO2flux") #replace y with variable
 
-#whole treatment box plot (using ggplot2)
+#### whole treatment box plot (using ggplot2) - this is better ####
 #written by Juliana Dioquino
 #edited by Samantha Solis de Ovando
 
@@ -175,7 +175,7 @@ ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment
         panel.spacing = unit(1, "lines"),
         panel.border = element_rect(color = "grey", fill = NA, size = 1))
 
-#Kruskal-Test (rstatix)
+#### Kruskal-Test (rstatix) ####
 # res.kruskal <- thesis_data %>% kruskal_test(Cover ~ Season)
 # res.kruskal
 # 
@@ -186,16 +186,17 @@ ggplot(data = thesis_data, aes(x = Treatment, y = canopyheight, fill = Treatment
 # # >= 0.14 (large effect)
 # thesis_data %>% kruskal_effsize(Cover ~ Season)
 # 
-# #Dunn's Test - pairwise comparisons
+#### Dunn's Test - pairwise comparisons ####
 # pwc <- thesis_data %>% 
 #   dunn_test(CO2flux ~ Season, p.adjust.method = "bonferroni") 
 # pwc
 
 #### Bayesian version ####
-#### Written by Jeremy Borderieux ####
-#### Edited by Samantha Solis de Ovando ####
+#Written by Jeremy Borderieux
+#Edited by Samantha Solis de Ovando
 
-#### bayesian CO2 ####
+
+#### Bayesian CO2 ####
 
 library(brms)
 
@@ -217,8 +218,7 @@ my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "Seaso
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_co2 <- c(my_prior_co2,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-####### Model ######
-
+#Model
 model_co2 <- brm(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
@@ -234,6 +234,7 @@ plot(model_co2) # assess model convergence
 pp_check(model_co2)
 summary(model_co2,prob = 0.9)
 pp_check(model_co2, type = "dens_overlay_grouped", group = "Season")
+
 
 #### Bayesian GCC ###
 
@@ -257,7 +258,7 @@ my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "Se
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_gcc <- c(my_prior_gcc,set_prior("normal(0,0.04)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-
+#Model
 model_gcc <- brm(meanGCC ~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values--trunc(lb = 0)
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
@@ -275,6 +276,7 @@ pp_check(model_gcc)
 pp_check(model_gcc, type = "dens_overlay_grouped", group = "Season")
 
 summary(model_gcc,prob = 0.9)
+
 
 ### Bayesian Cover ###
 
@@ -312,10 +314,12 @@ model_cover <- brm(Cover | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # mode
                  chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
+#Model
 plot(model_cover) # assess model convergence
 pp_check(model_cover)
 pp_check(model_cover, type = "dens_overlay_grouped", group = "Season")
 summary(model_cover)
+
 
 #### Bayesian canopy height ####
 
@@ -339,8 +343,7 @@ my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef =
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_height <- c(my_prior_height,set_prior("normal(0,15)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-
-
+#Model
 model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                  data = thesis_data, # data
                  family = gaussian(), # the data looks normally distributed
@@ -353,10 +356,11 @@ model_height <- brm(canopyheight | trunc(lb = 0)~ 0+Season*Treatment + (1|PotID)
                  chains = 3,# this is the number of chain, independent model
                  init = 0) # makes the computation more stable 
 
-plot(model_height) # assess model convergence, with fuzzy caterpillar
+plot(model_height) # assess model convergence
 pp_check(model_height)
 pp_check(model_height, type = "dens_overlay_grouped", group = "Season")
 summary(model_height,prob = 0.9)
+
 
 #### Bayesian Soil pH ####
 
@@ -380,9 +384,7 @@ my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonA
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_pH <- c(my_prior_pH,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-
-
-
+#Model
 model_pH <- brm(MEANpH ~ 0+Season*Treatment + (1|PotID), # model formula * = interaction, no negative values
                     data = thesis_data, # data
                     family = gaussian(), # the data looks normally distributed
@@ -398,6 +400,7 @@ plot(model_pH) # assess model convergence
 pp_check(model_pH)
 pp_check(model_pH, type = "dens_overlay_grouped", group = "Season")
 summary(model_pH)
+
 
 #### Bayesian Soil Moisture ####
 
@@ -435,10 +438,12 @@ model_moisture <- brm(MeanSoilMoisture | trunc(ub = 10)~ 0+Season*Treatment + (1
                 chains = 3,# this is the number of chains, independent model
                 init = 0) # makes the computation more stable 
 
+#Model
 plot(model_moisture) # assess model convergence
 pp_check(model_moisture)
 pp_check(model_moisture, type = "dens_overlay_grouped", group = "Season")
 summary(model_moisture,prob = 0.9)
+
 
 ## Bayesian Evapotranspiration ##
 
@@ -453,7 +458,7 @@ my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(1
 # treatment effect of autumn cold
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,1.5)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -462,9 +467,7 @@ my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentExtended"))
 my_prior_evapotranspiration <- c(my_prior_evapotranspiration,set_prior("normal(0,0.5)",class = "b",coef = "SeasonSummer:TreatmentExtended"))
 
-
-
-
+#Model
 model_evapotranspiration <- brm(bf(EvapotranspirationRate ~ 0+Season*Treatment + (1|PotID),
                                    sigma ~ 0+Season), # model formula * = interaction, no negative values
                       data = thesis_data, # data
@@ -482,7 +485,9 @@ pp_check(model_evapotranspiration)
 pp_check(model_evapotranspiration, type = "dens_overlay_grouped", group = "Season")
 summary(model_evapotranspiration)
 
-#### linear predictor model, cover and co2 fluxes ####
+
+#### linear predictor model####
+#replace y with dependent variable and x with predictor variable
 
 ggplot(thesis_data,aes( x= meanGCC
                         , y = averageTemp))+
@@ -491,10 +496,11 @@ ggplot(thesis_data,aes( x= meanGCC
   geom_smooth(method = 'lm')+
   scale_color_viridis_d()
 
-##### linear mixed-effects models (LME) ####
+##### linear mixed-effects models (LMEM) ####
 library(brms)
-#### CO2 ~ GCC LME ####
-## defining my prior knowlkedge
+
+#### CO2 ~ GCC LMEM ####
+## defining my prior knowledge
 # intercept, baseline flux of the control plot of a given season
 my_prior_co2_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
 my_prior_co2_linear <- c(my_prior_co2_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
@@ -538,7 +544,7 @@ model_co2_linear <- brm(bf(CO2flux | trunc(lb = 0)~ 0+Season*Treatment + (1|PotI
                  chains = 3,# this is the number of chains, independent model
                  init = 0) # makes the computation more stable 
 
-plot(model_co2_linear) # assess model convergence, with fuzzy caterpillar
+plot(model_co2_linear) # assess model convergence
 pp_check(model_co2_linear)
 summary(model_co2_linear,prob = 0.9)
 pp_check(model_co2_linear, type = "dens_overlay_grouped", group = "Season")
@@ -575,17 +581,17 @@ range(thesis_data$meanGCC)
 gcc_range <- max(thesis_data$meanGCC) - min(thesis_data$meanGCC)
 gcc_range
 
-#### CO2 ~ Cover linear ####
-## defining my prior knowlkedge
+#### CO2 ~ Cover LMEM ####
+## defining my prior knowledge
 # intercept, baseline flux of the control plot of a given season
 my_prior_co2_cover_linear <- set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumncold")
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonAutumnwarm"))
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonHeatwave"))
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(1.5,1)",class = "b",coef = "SeasonSummer"))
 # treatment effect of autumn cold
-my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we dont have any expectsation htat treatment will do anyhting 
+my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentExtended")) #treatment centered around 0 because we don't have any expectation that treatment will do anything 
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "TreatmentHeatwave"))
-# treatmemt effect within a season
+# treatment effect within a season
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonAutumnwarm:TreatmentHeatwave"))
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonHeatwave:TreatmentHeatwave"))
 my_prior_co2_cover_linear <- c(my_prior_co2_cover_linear,set_prior("normal(0,1)",class = "b",coef = "SeasonSummer:TreatmentHeatwave"))
@@ -628,7 +634,7 @@ plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale",re_formu
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
 
-#co2~cover, by treatment
+#plot co2~cover, by treatment
 pcoverlin <- plot(conditional_effects(model_co2_cover_linear,effects = "Cover_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
 pcoverlin$layers[[1]]$aes_params$alpha <- 0.15
 pcoverlin +
@@ -723,7 +729,7 @@ pmoistlin +
 
 fixef(model_co2_moisture_linear)
 
-#### CO2 ~ temp LME ####
+#### CO2 ~ temp LMEM ####
 library(brms)
 
 ## defining my prior knowledge
@@ -775,7 +781,7 @@ plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale",re_
     y = expression(CO[2]~"respiration ("*mu*"mol m"^-2*" s"^-1*")"))+
   theme_classic()
 
-##plot co2~temp, by treatment
+#plot co2~temp, by treatment
 ptemplin <- plot(conditional_effects(model_co2_temp_linear,effects = "averageTemp_scale:Treatment",re_formula = NA,prob = 0.9))[[1]]
 ptemplin$layers[[1]]$aes_params$alpha <- 0.15
 ptemplin +
