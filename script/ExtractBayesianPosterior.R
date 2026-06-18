@@ -1,5 +1,5 @@
-######## Written by Jeremy Borderieux ########
-##### Edited by Samantha Solis de Ovando #####
+# Written by Jeremy Borderieux #
+# Edited by Samantha Solis de Ovando #
 
 #### Packages ####
 library(brms)
@@ -9,21 +9,21 @@ library(dplyr)
 #### getting the posterior distribution ####
 
 # The models we got are a lot of parameters adding to each other to predict the mean 
-# of a given treatment/season, we can use those coeficients to assess significances of the treatment,
-# but another way is to use the model to predict the distributino of the mean of a given treatment, or difference 
+# of a given treatment/season, we can use those coeficients to assess significance of the treatment,
+# but another way is to use the model to predict the distribution of the mean of a given treatment, or difference 
 # between a treatment a the control, and do stats of that distribution (e.g. 90% credible interval)
 
-# I'm using the data.table syntaxe, I'm sorry, that's the only one I know
+# using the data.table syntax
 dataframe_treatment <- data.table(expand.grid(Treatment = unique(thesis_data$Treatment),Season=unique(thesis_data$Season)))
 
 # current model
-model_current <- model_cover ## change here the model to run this script
+model_current <- model_cover ## change the model here to run this script
 
-# the fitted function can be used to retrieved the predicted mean and CI of the mean of each treatment:season
+# the fitted function can be used to retrieve the predicted mean and CI of the mean of each treatment:season
 # replace with the desired model
-mean_effect <- fitted(model_current,summary = T,# summary = T means we got a mean and CI, not the full model
+mean_effect <- fitted(model_current,summary = T,# summary = T means we get a mean and CI, not the full model
                       probs = c(0.05,0.95), # width of the credible interval
-                      re_formula = NA, # ingnore the random PotID effect to get the mean prediction
+                      re_formula = NA, # ignore the random PotID effect to get the mean prediction
                       newdata = dataframe_treatment) ## feeding a dataframe with every class of treatment and season
 mean_effect <- cbind(dataframe_treatment,mean_effect)
 
@@ -39,16 +39,16 @@ ggplot(mean_effect,aes(x = Treatment, y = Estimate, ymin = Q5,ymax = Q95,color =
                                "Extended" = "#2CA02C"))
 
 
-## interesting,but we can also compute how that is different from the control plot
-full_model <- fitted(model_current,summary = F,# summary = F we get the full psoterior distribution, and play with it
-                      re_formula = NA, # ingnore the random PotID effect to get the mean prediction
+## interesting, but we can also compute how that is different from the control plot
+full_model <- fitted(model_current,summary = F, # summary = F we get the full posterior distribution, and play with it
+                      re_formula = NA, # ignore the random PotID effect to get the mean prediction
                       newdata = dataframe_treatment) ## feeding a dataframe with every class of treatment and season
 full_model <- cbind(dataframe_treatment,t(full_model))
 full_model <- melt(full_model,id.vars = c("Treatment","Season"))
 
-## this model contains of all the simulation of the posterio, we can now do treatment - control to see how much more/less 
+## this model contains of all the simulation of the posterior, we can now do treatment - control to see how much more/less 
 ## the variable compared to the treatment
-full_model[,diff_from_control := value - value[Treatment == "Control"] ,by = .(Season,variable)] # create a now col containing the difference
+full_model[,diff_from_control := value - value[Treatment == "Control"] ,by = .(Season,variable)] # create a new col containing the difference
 full_model_diff <- full_model[Treatment != "Control",] #we don't need the control anymore
 
 summary_full_model <- full_model_diff[,.(mean_diff = mean(diff_from_control),
@@ -57,7 +57,7 @@ summary_full_model <- full_model_diff[,.(mean_diff = mean(diff_from_control),
               prob_to_be_higher = mean(diff_from_control>0),
               prob_to_be_smaller = mean(diff_from_control<0)),by = .(Treatment,Season)]
 
-## compute the cutoff, but watch out sometime things are almost signif but still worth discussing
+## compute the cutoff, but watch out sometimes things are almost significant but still worth discussing
 summary_full_model[,signif := case_when(
   prob_to_be_higher  > 0.999 ~ "***",
   prob_to_be_higher  > 0.99 ~ "**",
@@ -82,7 +82,7 @@ summary_full_model
 
 color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#2CA02C")
 
-# plot 1: displaying the data and the estimate of the mean by the model
+#### plot 1: displaying the data and the estimate of the mean by the model ####
 (plot_to_export <- ggplot(data = full_model ,aes(x = Treatment, y = value,fill =Treatment,color = Treatment ))+
   geom_violin(alpha = 0.75,show.legend = T,trim = T)+ ## full prediction
   geom_pointrange(data = mean_effect,aes( y = Estimate, ymin = Q5,ymax = Q95),
@@ -105,7 +105,7 @@ color_vector <- c("Control" = "#1F77B4","Heatwave" = "#FF7F0E",  "Extended" = "#
   scale_fill_manual(values =color_vector)+
   scale_color_manual(values = color_vector))
 
-# plot 2: displayed the distribution of the posterior of the difference with the control
+#### plot 2: displayed the distribution of the posterior of the difference with the control ####
 (plot_to_export2 <- ggplot(data = full_model_diff ,aes(x = diff_from_control,fill = Treatment,color = Treatment ))+
   geom_density(alpha = 0.75,trim = T)+
   facet_grid(Treatment ~factor(Season, levels=c('Summer', 'Heatwave', 'Autumn warm', 'Autumn cold')))+
