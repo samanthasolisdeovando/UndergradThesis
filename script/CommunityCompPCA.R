@@ -1,9 +1,10 @@
 #Written by Samantha Solis de Ovando
-# inspired by tutorial: https://rpubs.com/brouwern/veganpca
+#tutorial: https://rpubs.com/brouwern/veganpca
 library(readr)
 library(dplyr)
 library("ggpubr")
-master_data <- read.csv(file.choose("MasterDataSheet_UGthesis_Feb232026"))
+master_data <- read.csv(file.choose("MasterDataSheet_UGthesis_Feb232026")) #using data with no timeshift on extended treatment and a pre-treatment timepoint
+
 head(master_data)
 
 ########### only 1 timepoint dataset ##########
