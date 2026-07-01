@@ -1,6 +1,7 @@
-### Written by Samantha Solis de Ovando
-tutorial: https://forum.posit.co/t/growth-rate-calculation-in-r/38675
+#### Written by Samantha Solis de Ovando ####
+#tutorial: https://forum.posit.co/t/growth-rate-calculation-in-r/38675
 ### weekly growth rate calculated with change in canopy height per week (cm)
+
 library(dplyr)
 growth_data <- read.csv("shifted_dataset.csv")
 
@@ -15,7 +16,7 @@ growth_rate_height = growth_data %>%
 print(growth_rate_height)
 write.csv(growth_rate_height, "shifted_dataset_added_height_growth_rate.csv", row.names = FALSE)
 
-#### GCC rate change
+#### GCC rate change ####
 
 green_data <- read.csv("shifted_dataset_added_height_growth_rate.csv")
 GCC_rate = green_data %>%
@@ -28,7 +29,7 @@ GCC_rate = green_data %>%
 print(GCC_rate)
 write.csv(GCC_rate, "shifted_dataset_added_gcc.csv", row.names = FALSE)
 
-#### Δ Cover Scatter
+#### Δ Cover Scatter ####
 cover_data <- read.csv("shifted_dataset_added_gcc.csv")
 
 cover_rate = cover_data %>%
@@ -62,7 +63,7 @@ ggplot(scatter_data, aes(x = measurement.week, y = CoverPercentChange, color = T
   ) +
   theme_minimal()
 
-#Δ Height Scatter
+#### Δ Height Scatter ####
 library(ggplot2)
 ggplot(scatter_data, aes(x = measurement.week, y = DiffHeight, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
@@ -82,7 +83,7 @@ ggplot(scatter_data, aes(x = measurement.week, y = DiffHeight, color = Treatment
   ) +
   theme_minimal()
 
-#Δ GCC Scatter
+#### Δ GCC Scatter ####
 library(ggplot2)
 ggplot(scatter_data, aes(x = measurement.week, y = DiffGCC, color = Treatment)) +
   geom_point(alpha = 0.6, na.rm = TRUE) +
