@@ -33,7 +33,8 @@ ggplot(June_11_PCA, aes(x = PC1, y = PC2, color = Treatment)) +
   y = "PC2",
   color = "Treatment")
 
-#### PCA funct group biplot ####
+#### PCA functional group bi-plot ####
+#most useful plot in my opinion
 
 species_scores <- as.data.frame(scores(pca_model, display = "species"))
 species_scores$FunctionalGroup <- rownames(species_scores)
