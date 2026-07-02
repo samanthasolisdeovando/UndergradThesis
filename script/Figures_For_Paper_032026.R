@@ -1,4 +1,6 @@
 
+#### THESE USE THE KRUSKAL WALLIS RESULTS, SO NOT USED IN MY FINAL PAPER ####
+
 ############## UPDATED FIGURES ###############
 #### Written by Samantha Solis de Ovando #####
 
@@ -19,7 +21,7 @@ shifted_data <- original_data %>%
 ################################# FIGURES #################################
 ###########################################################################
 
-### IMPORTANT: USE THIS DATA WHEN PLOTTING BY TIME
+### USE THIS DATA WHEN PLOTTING BY TIME
 plotting_with_time <- read.csv("shifted_dataset.csv")
 plotting_with_time$canopyheight <- as.numeric(as.character(plotting_with_time$canopyheight))
 
@@ -1025,7 +1027,7 @@ geom_vline(
 
 
 ################################################################
-####### BOX PLOTS - add significance lines BETWEEN BOXES! ######
+####### BOX PLOTS ######
 ######################## PLANT RESPONSE ########################
 
 
