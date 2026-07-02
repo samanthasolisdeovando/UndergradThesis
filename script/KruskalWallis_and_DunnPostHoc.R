@@ -1,8 +1,9 @@
 
+### NOT USED IN THE FINAL ANALYSIS ####
+
 ###### Kruskal Wallis & Dunn's Post-Hoc Test #####
 ## Tutorial: Data Novia, https://www.datanovia.com/en/lessons/kruskal-wallis-test-in-r/
 ## Edited by Samantha Solis de Ovando
-
 
 ########################################################################################
 ########################################################################################
