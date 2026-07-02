@@ -1,6 +1,6 @@
 #### Written by Samantha Solis de Ovando ####
 #tutorial: https://forum.posit.co/t/growth-rate-calculation-in-r/38675
-### weekly growth rate calculated with change in canopy height per week (cm)
+#### weekly growth rate calculated with change in canopy height per week (cm) ####
 
 library(dplyr)
 growth_data <- read.csv("shifted_dataset.csv")
