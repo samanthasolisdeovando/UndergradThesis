@@ -1,3 +1,6 @@
+
+#### NOT USED IN FINAL PAPER ####
+
 ############ source: Coding Club ###########
 ###### edited by Samantha Solis de Ovando ######
 setwd("~/Documents/UndergradThesis/data")
